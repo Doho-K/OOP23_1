@@ -1,0 +1,2 @@
+C:\Users\hp\Documents\임시\OOP_Project_Qt\x64\Debug\OOP_Project_Qt.exe
+C:\Users\hp\Desktop\Github\OOP23_1\OOP_Project_Qt\x64\Debug\OOP_Project_Qt.exe
