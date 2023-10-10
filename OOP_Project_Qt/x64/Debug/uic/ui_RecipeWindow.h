@@ -11,12 +11,15 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QScrollBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,11 +28,17 @@ class Ui_Recipe
 {
 public:
     QWidget *centralwidget;
+    QVBoxLayout *verticalLayout;
+    QLabel *FoodNameLable;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QTextEdit *textEdit;
+    QHBoxLayout *horizontalLayout_2;
+    QTextEdit *RecipeTextArea;
     QScrollBar *verticalScrollBar;
-    QLabel *label;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *EditButton;
+    QPushButton *DeleteButton;
+    QPushButton *CloseButton;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *Recipe)
@@ -37,32 +46,64 @@ public:
         if (Recipe->objectName().isEmpty())
             Recipe->setObjectName("Recipe");
         Recipe->setWindowModality(Qt::NonModal);
-        Recipe->resize(450, 290);
+        Recipe->resize(450, 340);
         centralwidget = new QWidget(Recipe);
         centralwidget->setObjectName("centralwidget");
-        scrollArea = new QScrollArea(centralwidget);
-        scrollArea->setObjectName("scrollArea");
-        scrollArea->setGeometry(QRect(10, 50, 431, 231));
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 429, 229));
-        textEdit = new QTextEdit(scrollAreaWidgetContents);
-        textEdit->setObjectName("textEdit");
-        textEdit->setGeometry(QRect(0, 0, 401, 441));
-        textEdit->setReadOnly(false);
-        verticalScrollBar = new QScrollBar(scrollAreaWidgetContents);
-        verticalScrollBar->setObjectName("verticalScrollBar");
-        verticalScrollBar->setGeometry(QRect(410, 0, 16, 221));
-        verticalScrollBar->setOrientation(Qt::Vertical);
-        scrollArea->setWidget(scrollAreaWidgetContents);
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setGeometry(QRect(10, 0, 121, 41));
+        verticalLayout = new QVBoxLayout(centralwidget);
+        verticalLayout->setObjectName("verticalLayout");
+        FoodNameLable = new QLabel(centralwidget);
+        FoodNameLable->setObjectName("FoodNameLable");
         QFont font;
         font.setPointSize(20);
         font.setBold(true);
-        label->setFont(font);
+        FoodNameLable->setFont(font);
+
+        verticalLayout->addWidget(FoodNameLable);
+
+        scrollArea = new QScrollArea(centralwidget);
+        scrollArea->setObjectName("scrollArea");
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 430, 225));
+        horizontalLayout_2 = new QHBoxLayout(scrollAreaWidgetContents);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        RecipeTextArea = new QTextEdit(scrollAreaWidgetContents);
+        RecipeTextArea->setObjectName("RecipeTextArea");
+        RecipeTextArea->setReadOnly(true);
+
+        horizontalLayout_2->addWidget(RecipeTextArea);
+
+        verticalScrollBar = new QScrollBar(scrollAreaWidgetContents);
+        verticalScrollBar->setObjectName("verticalScrollBar");
+        verticalScrollBar->setOrientation(Qt::Vertical);
+
+        horizontalLayout_2->addWidget(verticalScrollBar);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout->addWidget(scrollArea);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName("horizontalLayout");
+        EditButton = new QPushButton(centralwidget);
+        EditButton->setObjectName("EditButton");
+
+        horizontalLayout->addWidget(EditButton);
+
+        DeleteButton = new QPushButton(centralwidget);
+        DeleteButton->setObjectName("DeleteButton");
+
+        horizontalLayout->addWidget(DeleteButton);
+
+        CloseButton = new QPushButton(centralwidget);
+        CloseButton->setObjectName("CloseButton");
+
+        horizontalLayout->addWidget(CloseButton);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
         Recipe->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(Recipe);
         statusbar->setObjectName("statusbar");
@@ -76,7 +117,10 @@ public:
     void retranslateUi(QMainWindow *Recipe)
     {
         Recipe->setWindowTitle(QCoreApplication::translate("Recipe", "Recipe", nullptr));
-        label->setText(QCoreApplication::translate("Recipe", "\354\235\214\354\213\235 \354\235\264\353\246\204", nullptr));
+        FoodNameLable->setText(QCoreApplication::translate("Recipe", "\354\235\214\354\213\235 \354\235\264\353\246\204", nullptr));
+        EditButton->setText(QCoreApplication::translate("Recipe", "\354\210\230\354\240\225", nullptr));
+        DeleteButton->setText(QCoreApplication::translate("Recipe", "\354\202\255\354\240\234", nullptr));
+        CloseButton->setText(QCoreApplication::translate("Recipe", "\353\213\253\352\270\260", nullptr));
     } // retranslateUi
 
 };

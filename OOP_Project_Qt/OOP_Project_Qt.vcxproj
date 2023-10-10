@@ -90,14 +90,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="OOP_Project_Qt.qrc" />
+    <QtUic Include="AddRecipeUi.ui" />
     <QtUic Include="DateInputWindow.ui" />
     <QtUic Include="Date_Window.ui" />
+    <QtUic Include="DeteleRecipeWindow.ui" />
+    <QtUic Include="EditRecipeUi.ui" />
     <QtUic Include="RecipeWindow.ui" />
     <QtUic Include="Recipe_List.ui" />
-    <QtUic Include="OOP_Project_Qt.ui" />
+    <QtUic Include="MainUI.ui" />
     <QtMoc Include="OOP_Project_Qt.h" />
+    <ClCompile Include="Greeter.cpp" />
     <ClCompile Include="OOP_Project_Qt.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Greeter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
