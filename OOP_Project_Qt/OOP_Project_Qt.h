@@ -4,10 +4,10 @@
 #include <qmessagebox.h>
 #include "ui_MainUI.h"
 #include "ui_Recipe_List.h"
-#include "ui_Date_Window.h"
 #include "ui_RecipeWindow.h"
 #include "ui_AddRecipeUi.h"
 #include "ui_EditRecipeUi.h"
+#include "ui_DateInputWindow.h"
 
 class OOP_Project_Qt : public QMainWindow
 {
@@ -20,7 +20,6 @@ public:
 private:
     Ui::MainUI main_ui;
     Ui::Recipe_List recipe_ui;
-    Ui::Date_Window date_ui;
     Ui::Recipe recipeWindow_ui;
     Ui::AddRecipe addRecipe_ui;
     Ui::EditRecipe editRecipe_ui;
@@ -46,4 +45,17 @@ public slots:
     //레시피 수정화면
     void editRecipeButton();
     void escButton();
+
+    //일정 리스트 화면
+    void setSearchStartDate();
+    void setSearchEndDate();
+    void onDateView();
+    void deleteDatePlan();
+    void onDateInputeWindow();
+
+    //일정 입력 화면
+    
+
+    //일정 확인 화면
+    void editDateInfo();
 };

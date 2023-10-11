@@ -6,8 +6,7 @@ using namespace std;
 string selectString = "";
 map<string, string> a;
 
-OOP_Project_Qt::OOP_Project_Qt(QWidget *parent)
-    : QMainWindow(parent)
+OOP_Project_Qt::OOP_Project_Qt(QWidget *parent) : QMainWindow(parent)
 {
     mainButtonClicked();
 
@@ -34,7 +33,7 @@ void OOP_Project_Qt::recipe_ButtonClicked() {
 }
 
 void OOP_Project_Qt::date_ButtonClicked() {
-    date_ui.setupUi(this);
+    //date_ui.setupUi(this);
 }
 
 void OOP_Project_Qt::mainButtonClicked() {
@@ -100,5 +99,29 @@ void OOP_Project_Qt::editRecipeButton() {
 }
 
 void OOP_Project_Qt::escButton() {
+
+}
+
+void OOP_Project_Qt::setSearchStartDate() {
+
+}
+
+void OOP_Project_Qt::setSearchEndDate() {
+
+}
+
+void OOP_Project_Qt::onDateView() {
+
+}
+
+void OOP_Project_Qt::deleteDatePlan() {
+
+}
+
+void OOP_Project_Qt::onDateInputeWindow() {
+
+}
+
+void OOP_Project_Qt::editDateInfo() {
 
 }

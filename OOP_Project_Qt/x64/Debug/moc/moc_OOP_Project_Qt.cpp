@@ -53,11 +53,17 @@ static constexpr auto qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS = QtMocHelp
     "editRecipeWindow",
     "addRecipe",
     "editRecipeButton",
-    "escButton"
+    "escButton",
+    "setSearchStartDate",
+    "setSearchEndDate",
+    "onDateView",
+    "deleteDatePlan",
+    "onDateInputeWindow",
+    "editDateInfo"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t {
-    uint offsetsAndSizes[30];
+    uint offsetsAndSizes[42];
     char stringdata0[15];
     char stringdata1[18];
     char stringdata2[1];
@@ -73,6 +79,12 @@ struct qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t {
     char stringdata12[10];
     char stringdata13[17];
     char stringdata14[10];
+    char stringdata15[19];
+    char stringdata16[17];
+    char stringdata17[11];
+    char stringdata18[15];
+    char stringdata19[19];
+    char stringdata20[13];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -92,7 +104,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t qt_met
         QT_MOC_LITERAL(159, 16),  // "editRecipeWindow"
         QT_MOC_LITERAL(176, 9),  // "addRecipe"
         QT_MOC_LITERAL(186, 16),  // "editRecipeButton"
-        QT_MOC_LITERAL(203, 9)   // "escButton"
+        QT_MOC_LITERAL(203, 9),  // "escButton"
+        QT_MOC_LITERAL(213, 18),  // "setSearchStartDate"
+        QT_MOC_LITERAL(232, 16),  // "setSearchEndDate"
+        QT_MOC_LITERAL(249, 10),  // "onDateView"
+        QT_MOC_LITERAL(260, 14),  // "deleteDatePlan"
+        QT_MOC_LITERAL(275, 18),  // "onDateInputeWindow"
+        QT_MOC_LITERAL(294, 12)   // "editDateInfo"
     },
     "OOP_Project_Qt",
     "mainButtonClicked",
@@ -108,7 +126,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t qt_met
     "editRecipeWindow",
     "addRecipe",
     "editRecipeButton",
-    "escButton"
+    "escButton",
+    "setSearchStartDate",
+    "setSearchEndDate",
+    "onDateView",
+    "deleteDatePlan",
+    "onDateInputeWindow",
+    "editDateInfo"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -120,7 +144,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSOOP_Project_QtENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -128,23 +152,35 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSOOP_Project_QtENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   80,    2, 0x0a,    1 /* Public */,
-       3,    0,   81,    2, 0x0a,    2 /* Public */,
-       4,    0,   82,    2, 0x0a,    3 /* Public */,
-       5,    1,   83,    2, 0x0a,    4 /* Public */,
-       8,    0,   86,    2, 0x0a,    6 /* Public */,
-       9,    0,   87,    2, 0x0a,    7 /* Public */,
-      10,    0,   88,    2, 0x0a,    8 /* Public */,
-      11,    0,   89,    2, 0x0a,    9 /* Public */,
-      12,    0,   90,    2, 0x0a,   10 /* Public */,
-      13,    0,   91,    2, 0x0a,   11 /* Public */,
-      14,    0,   92,    2, 0x0a,   12 /* Public */,
+       1,    0,  116,    2, 0x0a,    1 /* Public */,
+       3,    0,  117,    2, 0x0a,    2 /* Public */,
+       4,    0,  118,    2, 0x0a,    3 /* Public */,
+       5,    1,  119,    2, 0x0a,    4 /* Public */,
+       8,    0,  122,    2, 0x0a,    6 /* Public */,
+       9,    0,  123,    2, 0x0a,    7 /* Public */,
+      10,    0,  124,    2, 0x0a,    8 /* Public */,
+      11,    0,  125,    2, 0x0a,    9 /* Public */,
+      12,    0,  126,    2, 0x0a,   10 /* Public */,
+      13,    0,  127,    2, 0x0a,   11 /* Public */,
+      14,    0,  128,    2, 0x0a,   12 /* Public */,
+      15,    0,  129,    2, 0x0a,   13 /* Public */,
+      16,    0,  130,    2, 0x0a,   14 /* Public */,
+      17,    0,  131,    2, 0x0a,   15 /* Public */,
+      18,    0,  132,    2, 0x0a,   16 /* Public */,
+      19,    0,  133,    2, 0x0a,   17 /* Public */,
+      20,    0,  134,    2, 0x0a,   18 /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -187,6 +223,18 @@ Q_CONSTINIT const QMetaObject OOP_Project_Qt::staticMetaObject = { {
         // method 'editRecipeButton'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'escButton'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'setSearchStartDate'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'setSearchEndDate'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onDateView'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'deleteDatePlan'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onDateInputeWindow'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'editDateInfo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -209,6 +257,12 @@ void OOP_Project_Qt::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 8: _t->addRecipe(); break;
         case 9: _t->editRecipeButton(); break;
         case 10: _t->escButton(); break;
+        case 11: _t->setSearchStartDate(); break;
+        case 12: _t->setSearchEndDate(); break;
+        case 13: _t->onDateView(); break;
+        case 14: _t->deleteDatePlan(); break;
+        case 15: _t->onDateInputeWindow(); break;
+        case 16: _t->editDateInfo(); break;
         default: ;
         }
     }
@@ -233,13 +287,13 @@ int OOP_Project_Qt::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 17)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 17;
     }
     return _id;
 }

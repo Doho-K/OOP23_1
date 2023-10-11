@@ -48,7 +48,7 @@
     <QtUic Include="Recipe_List.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="Date_Window.ui">
+    <QtUic Include="DateListWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="RecipeWindow.ui">
@@ -64,6 +64,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="EditRecipeUi.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="DateViewWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

@@ -64,6 +64,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <PropertyGroup Label="QtDeploy" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtDeploy>true</QtDeploy>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtUic />
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -92,7 +98,12 @@
     <QtRcc Include="OOP_Project_Qt.qrc" />
     <QtUic Include="AddRecipeUi.ui" />
     <QtUic Include="DateInputWindow.ui" />
-    <QtUic Include="Date_Window.ui" />
+    <QtUic Include="DateViewWindow.ui">
+      <DisplayDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DisplayDependencies>
+    </QtUic>
+    <QtUic Include="DateListWindow.ui">
+      <DisplayDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DisplayDependencies>
+    </QtUic>
     <QtUic Include="DeteleRecipeWindow.ui" />
     <QtUic Include="EditRecipeUi.ui" />
     <QtUic Include="RecipeWindow.ui" />
