@@ -1,127 +1,198 @@
 #include "OOP_Project_Qt.h"
 #include "qpushbutton.h"
 #include "qstring.h"
+
 using namespace std;
 
 string selectString = "";
-map<string, string> a;
 
 OOP_Project_Qt::OOP_Project_Qt(QWidget *parent) : QMainWindow(parent)
 {
-    mainButtonClicked();
-
-    a.insert({ "aa", "150" });
+    openMainWindow();
 }
 
 OOP_Project_Qt::~OOP_Project_Qt()
 {}
 
-//레시피 창 구현
-void OOP_Project_Qt::recipe_ButtonClicked() {
-    recipe_ui.setupUi(this);
-    recipe_ui.listWidget->clear();
-    
-    for (auto const& [key, val] : a) {
-        QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(key));
-        recipe_ui.listWidget->addItem(item);
+//메인 창 구현
+void OOP_Project_Qt::openMainWindow() {
+    main.setupUi(this);
+
+    connect(main.recipeButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
+    connect(main.dateButton, SIGNAL(clicked()), this, SLOT(openDateListWindow()));
+}
+
+//레시피 관리 창 구현
+void OOP_Project_Qt::openRecipeListWindow() {
+    recipeList.setupUi(this);
+    recipeList.listWidget->clear();
+
+    setRecipeSearchInfo();
+
+    connect(recipeList.MainButton, SIGNAL(clicked()), this, SLOT(openMainWindow()));
+
+    connect(recipeList.SearchText, SIGNAL(textChanged(const QString)), SLOT(setRecipeSearchInfo()));
+    connect(recipeList.listWidget, SIGNAL(doubleClicked(const QModelIndex)), this, SLOT(openRecipeViewWindow(QModelIndex)));
+
+    connect(recipeList.AddButton, SIGNAL(clicked()), this, SLOT(openRecipeInputWindow()));
+    connect(recipeList.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteRecipeInfo()));
+}
+
+//레시피 정보 입력 창(레시피 추가)
+void OOP_Project_Qt::openRecipeInputWindow() {
+    recipeInput.setupUi(this);
+    recipeInput.lineEdit->setText("");
+    recipeInput.textEdit->setText("");
+
+    connect(recipeInput.saveButton, SIGNAL(clicked()), this, SLOT(InputRecipeInfo()));
+    connect(recipeInput.escButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
+}
+
+void OOP_Project_Qt::openRecipeViewWindow(QModelIndex index) {
+    QString a = recipeList.listWidget->itemFromIndex(index)->text();
+    //Recipe target = greeter.searchExactRecipe(recipeList.listWidget->itemFromIndex(index)->text().toStdString());
+    Recipe target = greeter.searchExactRecipe(a.toStdString());
+
+    recipeView.setupUi(this);
+
+    //recipeView.FoodNameLable->setText(QString::fromStdString(target.getName()));
+    recipeView.FoodNameLable->setText(a);
+    recipeView.RecipeTextArea->setText(QString::fromStdString(target.getContent()));
+
+    connect(recipeView.EditButton, SIGNAL(clicked()), this, SLOT(openRecipeInputWindowForEdit()));
+    connect(recipeView.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteThisRecipeInfo()));
+    connect(recipeView.CloseButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
+}
+
+void OOP_Project_Qt::InputRecipeInfo() {
+    if (recipeInput.lineEdit->text() != "") {
+        vector<string> ingredient;
+        vector<int> numOfIngredient;
+
+        if (recipeInput.nameOfIngredient1->text() != "" && recipeInput.numOfIngredient1->value() > 0) {
+            ingredient.push_back(recipeInput.nameOfIngredient1->text().toStdString());
+            numOfIngredient.push_back(recipeInput.numOfIngredient1->value());
+        }
+        if (recipeInput.nameOfIngredient2->text() != "" && recipeInput.numOfIngredient2->value() > 0) {
+            ingredient.push_back(recipeInput.nameOfIngredient2->text().toStdString());
+            numOfIngredient.push_back(recipeInput.numOfIngredient2->value());
+        }
+        if (recipeInput.nameOfIngredient3->text() != "" && recipeInput.numOfIngredient3->value() > 0) {
+            ingredient.push_back(recipeInput.nameOfIngredient3->text().toStdString());
+            numOfIngredient.push_back(recipeInput.numOfIngredient3->value());
+        }
+        if (recipeInput.nameOfIngredient4->text() != "" && recipeInput.numOfIngredient4->value() > 0) {
+            ingredient.push_back(recipeInput.nameOfIngredient4->text().toStdString());
+            numOfIngredient.push_back(recipeInput.numOfIngredient4->value());
+        }
+        if (recipeInput.nameOfIngredient5->text() != "" && recipeInput.numOfIngredient5->value() > 0) {
+            ingredient.push_back(recipeInput.nameOfIngredient5->text().toStdString());
+            numOfIngredient.push_back(recipeInput.numOfIngredient5->value());
+        }
+
+        greeter.addRecipe(recipeInput.lineEdit->text().toStdString(), ingredient, numOfIngredient, 10, recipeInput.textEdit->toHtml().toStdString());
+
+        openRecipeListWindow();
     }
-
-    connect(recipe_ui.MainButton, SIGNAL(clicked()), this, SLOT(mainButtonClicked()));
-    connect(recipe_ui.AddButton, SIGNAL(clicked()), this, SLOT(addRecipeInfo()));
-    connect(recipe_ui.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteRecipeInfo()));
-    connect(recipe_ui.listWidget, SIGNAL(doubleClicked(const QModelIndex)), this, SLOT(callRecipeInfo(QModelIndex)));
-}
-
-void OOP_Project_Qt::date_ButtonClicked() {
-    //date_ui.setupUi(this);
-}
-
-void OOP_Project_Qt::mainButtonClicked() {
-    main_ui.setupUi(this);
-
-    connect(main_ui.recipeButton, SIGNAL(clicked()), this, SLOT(recipe_ButtonClicked()));
-    connect(main_ui.dateButton, SIGNAL(clicked()), this, SLOT(date_ButtonClicked()));
-}
-
-void OOP_Project_Qt::callRecipeInfo(QModelIndex index) {
-    recipeWindow_ui.setupUi(this);
-    recipeWindow_ui.FoodNameLable->setText(recipe_ui.listWidget->itemFromIndex(index)->text());
-    recipeWindow_ui.RecipeTextArea->setText(QString::fromStdString(a[recipe_ui.listWidget->itemFromIndex(index)->text().toStdString()]));
-    connect(recipeWindow_ui.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteThisRecipeInfo()));
-    connect(recipeWindow_ui.CloseButton, SIGNAL(clicked()), this, SLOT(recipe_ButtonClicked()));
-    connect(recipeWindow_ui.EditButton, SIGNAL(clicked()), this, SLOT(editRecipeWindow()));
-}
-
-void OOP_Project_Qt::addRecipeInfo() {
-    addRecipe_ui.setupUi(this);
-    addRecipe_ui.lineEdit->setText("");
-    addRecipe_ui.textEdit->setText("");
-
-    connect(addRecipe_ui.pushButton_2, SIGNAL(clicked()), this, SLOT(addRecipe()));
-    connect(addRecipe_ui.pushButton, SIGNAL(clicked()), this, SLOT(recipe_ButtonClicked()));
 }
 
 void OOP_Project_Qt::deleteRecipeInfo() {
-    if (recipe_ui.listWidget->currentItem() != NULL) {
-        string tmp = recipe_ui.listWidget->currentItem()->text().toStdString();
-        recipe_ui.listWidget->takeItem(recipe_ui.listWidget->currentRow());
-        a.erase(tmp);
+    if (recipeList.listWidget->currentItem() != NULL) {
+        string tmp = recipeList.listWidget->currentItem()->text().toStdString();
+        recipeList.listWidget->takeItem(recipeList.listWidget->currentRow());
     }
+}
+
+void OOP_Project_Qt::setRecipeSearchInfo() {
+    recipeList.listWidget->clear();
+    vector<Recipe> recipes = greeter.callRecipeHaveString(recipeList.SearchText->text().toStdString());
+    for (Recipe _recipe : recipes) {
+       recipeList.listWidget->addItem(QString::fromStdString(_recipe.getName()));
+    }
+}
+
+
+void OOP_Project_Qt::openRecipeInputWindowForEdit() {
+    Recipe recipe = greeter.searchExactRecipe(recipeView.FoodNameLable->text().toStdString());
+    recipeInput.setupUi(this);
+
+    recipeInput.lineEdit->setText(QString::fromStdString(recipe.getName()));
+    recipeInput.textEdit->setText(QString::fromStdString(recipe.getContent()));
+
+    QLineEdit *nameOfIngredients[5] = { recipeInput.nameOfIngredient1, recipeInput.nameOfIngredient2, recipeInput.nameOfIngredient3, recipeInput.nameOfIngredient4, recipeInput.nameOfIngredient5 };
+    QSpinBox *numOfIngredients[5] = { recipeInput.numOfIngredient1, recipeInput.numOfIngredient2, recipeInput.numOfIngredient3, recipeInput.numOfIngredient4, recipeInput.numOfIngredient5 };
+    
+    for (int i = 0; i < recipe.get_Ingredient_size(); i++) {
+        nameOfIngredients[i]->setText(QString::fromStdString(recipe.getIngredientsName()[i]));
+        numOfIngredients[i]->setValue(recipe.getIngredientsScale()[i]);
+    }
+    
+
+    connect(recipeInput.saveButton, SIGNAL(clicked()), this, SLOT(InputRecipeInfo()));
+    connect(recipeInput.escButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
 }
 
 void OOP_Project_Qt::deleteThisRecipeInfo() {
-    a.erase(recipeWindow_ui.FoodNameLable->text().toStdString());
-    recipe_ButtonClicked();
+    greeter.deleteRecipe(recipeInput.lineEdit->text().toStdString());
+
+    openRecipeListWindow();
 }
 
-void OOP_Project_Qt::editRecipeWindow() {
-    selectString = recipeWindow_ui.FoodNameLable->text().toStdString();
+//***************************************************************************************************************//
 
-    editRecipe_ui.setupUi(this);
-    editRecipe_ui.lineEdit->setText(QString::fromStdString(selectString));
-    editRecipe_ui.textEdit->setText(QString::fromStdString(a[selectString]));
+//일정 관리 창 구현
+void OOP_Project_Qt::openDateListWindow() {
+    dateList.setupUi(this);
 
-    connect(editRecipe_ui.pushButton_2, SIGNAL(clicked()), this, SLOT(editRecipeButton()));
-    connect(editRecipe_ui.pushButton, SIGNAL(clicked()), this, SLOT(recipe_ButtonClicked()));
+    connect(dateList.MainButton, SIGNAL(clicked()), this, SLOT(openMainWindow()));
+
+    connect(dateList.StartDate, SIGNAL(dateTimeChanged(const QDateTime)), this, SLOT(setDateSearchInfo()));
+    connect(dateList.EndDate, SIGNAL(dateTimeChanged(const QDateTime)), this, SLOT(setDateSearchInfo()));
+    connect(dateList.SearchText, SIGNAL(textChanged(const QString)), this, SLOT(setDateSearchInfo()));
+
+    connect(dateList.AddButton, SIGNAL(clicked()), this, SLOT(openDateInputWindow()));
+    connect(dateList.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteDateInfo()));
 }
 
-void OOP_Project_Qt::addRecipe() {
-    a.insert({ addRecipe_ui.lineEdit->text().toStdString(), addRecipe_ui.textEdit->toHtml().toStdString() });
-    recipe_ButtonClicked();
+void OOP_Project_Qt::openDateInputWindow() {
+    dateInput.setupUi(this);
+
+    //목록
+
+    connect(dateInput.saveButton, SIGNAL(clicked()), SLOT(InputDateInfo()));
+    connect(dateInput.escButton, SIGNAL(clicked()), SLOT(openDateListWindow()));
 }
 
-void OOP_Project_Qt::editRecipeButton() {
-    if (selectString != "") {
-        a.erase(selectString);
-        a.insert({ editRecipe_ui.lineEdit->text().toStdString(), editRecipe_ui.textEdit->toHtml().toStdString() });
-    }
-    recipe_ButtonClicked();
+void OOP_Project_Qt::openDateViewWindow() {
+    dateView.setupUi(this);
+
+    connect(dateView.editButton, SIGNAL(clicked()), SLOT(openDateInputWindowForEdit()));
+    connect(dateView.deleteButton, SIGNAL(clicked()), SLOT(deleteThisDateInfo()));
+    connect(dateView.escButton, SIGNAL(clicked()), SLOT(openDateListWindow()));
 }
 
-void OOP_Project_Qt::escButton() {
-
+void OOP_Project_Qt::InputDateInfo() {
+    openDateListWindow();
 }
 
-void OOP_Project_Qt::setSearchStartDate() {
-
+void OOP_Project_Qt::deleteDateInfo() {
+    //
 }
 
-void OOP_Project_Qt::setSearchEndDate() {
+void OOP_Project_Qt::openDateInputWindowForEdit() {
+    dateInput.setupUi(this);
 
-}
+    //목록
 
-void OOP_Project_Qt::onDateView() {
-
-}
-
-void OOP_Project_Qt::deleteDatePlan() {
-
-}
-
-void OOP_Project_Qt::onDateInputeWindow() {
+    connect(dateInput.saveButton, SIGNAL(clicked()), SLOT(InputDateInfo()));
+    connect(dateInput.escButton, SIGNAL(clicked()), SLOT(openDateListWindow()));
 
 }
 
-void OOP_Project_Qt::editDateInfo() {
+void OOP_Project_Qt::deleteThisDateInfo() {
+    openDateListWindow();
+}
 
+void OOP_Project_Qt::setDateSearchInfo() {
+    //검색 결과 갱신
 }

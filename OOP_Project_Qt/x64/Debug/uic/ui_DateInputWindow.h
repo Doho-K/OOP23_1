@@ -26,7 +26,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_DateInput
+class Ui_DateInputWindow
 {
 public:
     QWidget *centralwidget;
@@ -34,48 +34,48 @@ public:
     QLabel *label_2;
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_9;
-    QLineEdit *lineEdit;
+    QLineEdit *dateName;
     QSpacerItem *horizontalSpacer_2;
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
-    QDateTimeEdit *dateTimeEdit;
+    QDateTimeEdit *dateTime;
     QSpacerItem *verticalSpacer;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
-    QComboBox *comboBox;
+    QComboBox *morningMeal;
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_5;
-    QSpinBox *spinBox;
+    QSpinBox *morningNumOfHuman;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_6;
-    QComboBox *comboBox_4;
+    QComboBox *lunchMeal;
     QHBoxLayout *horizontalLayout_10;
     QLabel *label_7;
-    QSpinBox *spinBox_2;
+    QSpinBox *lunchNumOfHuman;
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_4;
-    QComboBox *comboBox_2;
+    QComboBox *dinnerMeal;
     QHBoxLayout *horizontalLayout_11;
     QLabel *label_8;
-    QSpinBox *spinBox_3;
+    QSpinBox *dinnerNumOfHuman;
     QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
+    QPushButton *saveButton;
+    QPushButton *escButton;
     QSpacerItem *verticalSpacer_2;
     QStatusBar *statusbar;
 
-    void setupUi(QMainWindow *DateInput)
+    void setupUi(QMainWindow *DateInputWindow)
     {
-        if (DateInput->objectName().isEmpty())
-            DateInput->setObjectName("DateInput");
-        DateInput->resize(608, 204);
-        centralwidget = new QWidget(DateInput);
+        if (DateInputWindow->objectName().isEmpty())
+            DateInputWindow->setObjectName("DateInputWindow");
+        DateInputWindow->resize(608, 204);
+        centralwidget = new QWidget(DateInputWindow);
         centralwidget->setObjectName("centralwidget");
         verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName("verticalLayout");
@@ -95,10 +95,10 @@ public:
 
         horizontalLayout_7->addWidget(label_9);
 
-        lineEdit = new QLineEdit(centralwidget);
-        lineEdit->setObjectName("lineEdit");
+        dateName = new QLineEdit(centralwidget);
+        dateName->setObjectName("dateName");
 
-        horizontalLayout_7->addWidget(lineEdit);
+        horizontalLayout_7->addWidget(dateName);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -118,10 +118,10 @@ public:
 
         horizontalLayout->addWidget(label);
 
-        dateTimeEdit = new QDateTimeEdit(centralwidget);
-        dateTimeEdit->setObjectName("dateTimeEdit");
+        dateTime = new QDateTimeEdit(centralwidget);
+        dateTime->setObjectName("dateTime");
 
-        horizontalLayout->addWidget(dateTimeEdit);
+        horizontalLayout->addWidget(dateTime);
 
 
         verticalLayout_2->addLayout(horizontalLayout);
@@ -143,10 +143,10 @@ public:
 
         horizontalLayout_2->addWidget(label_3);
 
-        comboBox = new QComboBox(centralwidget);
-        comboBox->setObjectName("comboBox");
+        morningMeal = new QComboBox(centralwidget);
+        morningMeal->setObjectName("morningMeal");
 
-        horizontalLayout_2->addWidget(comboBox);
+        horizontalLayout_2->addWidget(morningMeal);
 
 
         verticalLayout_3->addLayout(horizontalLayout_2);
@@ -159,10 +159,10 @@ public:
 
         horizontalLayout_9->addWidget(label_5);
 
-        spinBox = new QSpinBox(centralwidget);
-        spinBox->setObjectName("spinBox");
+        morningNumOfHuman = new QSpinBox(centralwidget);
+        morningNumOfHuman->setObjectName("morningNumOfHuman");
 
-        horizontalLayout_9->addWidget(spinBox);
+        horizontalLayout_9->addWidget(morningNumOfHuman);
 
 
         verticalLayout_3->addLayout(horizontalLayout_9);
@@ -180,10 +180,10 @@ public:
 
         horizontalLayout_6->addWidget(label_6);
 
-        comboBox_4 = new QComboBox(centralwidget);
-        comboBox_4->setObjectName("comboBox_4");
+        lunchMeal = new QComboBox(centralwidget);
+        lunchMeal->setObjectName("lunchMeal");
 
-        horizontalLayout_6->addWidget(comboBox_4);
+        horizontalLayout_6->addWidget(lunchMeal);
 
 
         verticalLayout_4->addLayout(horizontalLayout_6);
@@ -196,10 +196,10 @@ public:
 
         horizontalLayout_10->addWidget(label_7);
 
-        spinBox_2 = new QSpinBox(centralwidget);
-        spinBox_2->setObjectName("spinBox_2");
+        lunchNumOfHuman = new QSpinBox(centralwidget);
+        lunchNumOfHuman->setObjectName("lunchNumOfHuman");
 
-        horizontalLayout_10->addWidget(spinBox_2);
+        horizontalLayout_10->addWidget(lunchNumOfHuman);
 
 
         verticalLayout_4->addLayout(horizontalLayout_10);
@@ -217,10 +217,10 @@ public:
 
         horizontalLayout_4->addWidget(label_4);
 
-        comboBox_2 = new QComboBox(centralwidget);
-        comboBox_2->setObjectName("comboBox_2");
+        dinnerMeal = new QComboBox(centralwidget);
+        dinnerMeal->setObjectName("dinnerMeal");
 
-        horizontalLayout_4->addWidget(comboBox_2);
+        horizontalLayout_4->addWidget(dinnerMeal);
 
 
         verticalLayout_5->addLayout(horizontalLayout_4);
@@ -233,10 +233,10 @@ public:
 
         horizontalLayout_11->addWidget(label_8);
 
-        spinBox_3 = new QSpinBox(centralwidget);
-        spinBox_3->setObjectName("spinBox_3");
+        dinnerNumOfHuman = new QSpinBox(centralwidget);
+        dinnerNumOfHuman->setObjectName("dinnerNumOfHuman");
 
-        horizontalLayout_11->addWidget(spinBox_3);
+        horizontalLayout_11->addWidget(dinnerNumOfHuman);
 
 
         verticalLayout_5->addLayout(horizontalLayout_11);
@@ -253,15 +253,15 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer);
 
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName("pushButton_2");
+        saveButton = new QPushButton(centralwidget);
+        saveButton->setObjectName("saveButton");
 
-        horizontalLayout_5->addWidget(pushButton_2);
+        horizontalLayout_5->addWidget(saveButton);
 
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName("pushButton");
+        escButton = new QPushButton(centralwidget);
+        escButton->setObjectName("escButton");
 
-        horizontalLayout_5->addWidget(pushButton);
+        horizontalLayout_5->addWidget(escButton);
 
 
         verticalLayout->addLayout(horizontalLayout_5);
@@ -270,36 +270,36 @@ public:
 
         verticalLayout->addItem(verticalSpacer_2);
 
-        DateInput->setCentralWidget(centralwidget);
-        statusbar = new QStatusBar(DateInput);
+        DateInputWindow->setCentralWidget(centralwidget);
+        statusbar = new QStatusBar(DateInputWindow);
         statusbar->setObjectName("statusbar");
-        DateInput->setStatusBar(statusbar);
+        DateInputWindow->setStatusBar(statusbar);
 
-        retranslateUi(DateInput);
+        retranslateUi(DateInputWindow);
 
-        QMetaObject::connectSlotsByName(DateInput);
+        QMetaObject::connectSlotsByName(DateInputWindow);
     } // setupUi
 
-    void retranslateUi(QMainWindow *DateInput)
+    void retranslateUi(QMainWindow *DateInputWindow)
     {
-        DateInput->setWindowTitle(QCoreApplication::translate("DateInput", "MainWindow", nullptr));
-        label_2->setText(QCoreApplication::translate("DateInput", "\354\235\274\354\240\225 \354\236\205\353\240\245", nullptr));
-        label_9->setText(QCoreApplication::translate("DateInput", "\354\235\274\354\240\225\353\252\205 : ", nullptr));
-        label->setText(QCoreApplication::translate("DateInput", "\353\202\240\354\247\234:", nullptr));
-        label_3->setText(QCoreApplication::translate("DateInput", "\354\230\244\354\240\204", nullptr));
-        label_5->setText(QCoreApplication::translate("DateInput", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        label_6->setText(QCoreApplication::translate("DateInput", "\354\230\244\355\233\204", nullptr));
-        label_7->setText(QCoreApplication::translate("DateInput", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        label_4->setText(QCoreApplication::translate("DateInput", "\354\240\200\353\205\201", nullptr));
-        label_8->setText(QCoreApplication::translate("DateInput", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("DateInput", "\354\240\200\354\236\245", nullptr));
-        pushButton->setText(QCoreApplication::translate("DateInput", "\354\267\250\354\206\214", nullptr));
+        DateInputWindow->setWindowTitle(QCoreApplication::translate("DateInputWindow", "MainWindow", nullptr));
+        label_2->setText(QCoreApplication::translate("DateInputWindow", "\354\235\274\354\240\225 \354\236\205\353\240\245", nullptr));
+        label_9->setText(QCoreApplication::translate("DateInputWindow", "\354\235\274\354\240\225\353\252\205 : ", nullptr));
+        label->setText(QCoreApplication::translate("DateInputWindow", "\353\202\240\354\247\234:", nullptr));
+        label_3->setText(QCoreApplication::translate("DateInputWindow", "\354\230\244\354\240\204", nullptr));
+        label_5->setText(QCoreApplication::translate("DateInputWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
+        label_6->setText(QCoreApplication::translate("DateInputWindow", "\354\230\244\355\233\204", nullptr));
+        label_7->setText(QCoreApplication::translate("DateInputWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
+        label_4->setText(QCoreApplication::translate("DateInputWindow", "\354\240\200\353\205\201", nullptr));
+        label_8->setText(QCoreApplication::translate("DateInputWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
+        saveButton->setText(QCoreApplication::translate("DateInputWindow", "\354\240\200\354\236\245", nullptr));
+        escButton->setText(QCoreApplication::translate("DateInputWindow", "\354\267\250\354\206\214", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class DateInput: public Ui_DateInput {};
+    class DateInputWindow: public Ui_DateInputWindow {};
 } // namespace Ui
 
 QT_END_NAMESPACE

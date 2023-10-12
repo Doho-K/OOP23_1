@@ -26,7 +26,7 @@
     <QtRcc Include="OOP_Project_Qt.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="MainUI.ui">
+    <QtUic Include="MainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtMoc Include="OOP_Project_Qt.h">
@@ -40,30 +40,24 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Greeter.cpp">
+    <ClCompile Include="ConsoleUIcpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="Recipe_List.ui">
+    <QtUic Include="RecipeListWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="DateListWindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="RecipeWindow.ui">
+    <QtUic Include="RecipeViewWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="DateInputWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="DeteleRecipeWindow.ui">
+    <QtUic Include="RecipeInputWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="AddRecipeUi.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="EditRecipeUi.ui">
+    <QtUic Include="DateListWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="DateViewWindow.ui">
@@ -71,7 +65,10 @@
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Greeter.h">
+    <ClInclude Include="greeter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

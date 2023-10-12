@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Recipe</class>
- <widget class="QMainWindow" name="Recipe">
+ <class>RecipeViewWindow</class>
+ <widget class="QMainWindow" name="RecipeViewWindow">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>

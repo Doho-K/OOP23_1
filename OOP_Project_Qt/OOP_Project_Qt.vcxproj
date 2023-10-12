@@ -96,26 +96,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="OOP_Project_Qt.qrc" />
-    <QtUic Include="AddRecipeUi.ui" />
+    <QtUic Include="RecipeInputWindow.ui" />
     <QtUic Include="DateInputWindow.ui" />
-    <QtUic Include="DateViewWindow.ui">
-      <DisplayDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DisplayDependencies>
-    </QtUic>
-    <QtUic Include="DateListWindow.ui">
-      <DisplayDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DisplayDependencies>
-    </QtUic>
-    <QtUic Include="DeteleRecipeWindow.ui" />
-    <QtUic Include="EditRecipeUi.ui" />
-    <QtUic Include="RecipeWindow.ui" />
-    <QtUic Include="Recipe_List.ui" />
-    <QtUic Include="MainUI.ui" />
+    <QtUic Include="DateListWindow.ui" />
+    <QtUic Include="DateViewWindow.ui" />
+    <QtUic Include="RecipeViewWindow.ui" />
+    <QtUic Include="RecipeListWindow.ui" />
+    <QtUic Include="MainWindow.ui" />
     <QtMoc Include="OOP_Project_Qt.h" />
-    <ClCompile Include="Greeter.cpp" />
+    <ClCompile Include="ConsoleUIcpp.cpp" />
     <ClCompile Include="OOP_Project_Qt.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Greeter.h" />
+    <ClInclude Include="ConsoleUI.h" />
+    <ClInclude Include="greeter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

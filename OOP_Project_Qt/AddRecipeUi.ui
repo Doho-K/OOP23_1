@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddRecipe</class>
- <widget class="QMainWindow" name="AddRecipe">
+ <class>RecipeInputWindow</class>
+ <widget class="QMainWindow" name="RecipeInputWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -90,14 +90,14 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="saveButton">
         <property name="text">
-         <string>추가</string>
+         <string>저장</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="escButton">
         <property name="text">
          <string>취소</string>
         </property>

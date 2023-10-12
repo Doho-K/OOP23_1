@@ -40,99 +40,95 @@ namespace {
 struct qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS = QtMocHelpers::stringData(
     "OOP_Project_Qt",
-    "mainButtonClicked",
+    "openMainWindow",
     "",
-    "recipe_ButtonClicked",
-    "date_ButtonClicked",
-    "callRecipeInfo",
+    "openRecipeInputWindow",
+    "openRecipeListWindow",
+    "openRecipeViewWindow",
     "QModelIndex",
-    "index",
-    "addRecipeInfo",
+    "InputRecipeInfo",
+    "openRecipeInputWindowForEdit",
     "deleteRecipeInfo",
     "deleteThisRecipeInfo",
-    "editRecipeWindow",
-    "addRecipe",
-    "editRecipeButton",
-    "escButton",
-    "setSearchStartDate",
-    "setSearchEndDate",
-    "onDateView",
-    "deleteDatePlan",
-    "onDateInputeWindow",
-    "editDateInfo"
+    "setRecipeSearchInfo",
+    "openDateInputWindow",
+    "openDateListWindow",
+    "openDateViewWindow",
+    "InputDateInfo",
+    "deleteDateInfo",
+    "openDateInputWindowForEdit",
+    "deleteThisDateInfo",
+    "setDateSearchInfo"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t {
-    uint offsetsAndSizes[42];
+    uint offsetsAndSizes[40];
     char stringdata0[15];
-    char stringdata1[18];
+    char stringdata1[15];
     char stringdata2[1];
-    char stringdata3[21];
-    char stringdata4[19];
-    char stringdata5[15];
+    char stringdata3[22];
+    char stringdata4[21];
+    char stringdata5[21];
     char stringdata6[12];
-    char stringdata7[6];
-    char stringdata8[14];
+    char stringdata7[16];
+    char stringdata8[29];
     char stringdata9[17];
     char stringdata10[21];
-    char stringdata11[17];
-    char stringdata12[10];
-    char stringdata13[17];
-    char stringdata14[10];
-    char stringdata15[19];
-    char stringdata16[17];
-    char stringdata17[11];
-    char stringdata18[15];
-    char stringdata19[19];
-    char stringdata20[13];
+    char stringdata11[20];
+    char stringdata12[20];
+    char stringdata13[19];
+    char stringdata14[19];
+    char stringdata15[14];
+    char stringdata16[15];
+    char stringdata17[27];
+    char stringdata18[19];
+    char stringdata19[18];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS = {
     {
         QT_MOC_LITERAL(0, 14),  // "OOP_Project_Qt"
-        QT_MOC_LITERAL(15, 17),  // "mainButtonClicked"
-        QT_MOC_LITERAL(33, 0),  // ""
-        QT_MOC_LITERAL(34, 20),  // "recipe_ButtonClicked"
-        QT_MOC_LITERAL(55, 18),  // "date_ButtonClicked"
-        QT_MOC_LITERAL(74, 14),  // "callRecipeInfo"
-        QT_MOC_LITERAL(89, 11),  // "QModelIndex"
-        QT_MOC_LITERAL(101, 5),  // "index"
-        QT_MOC_LITERAL(107, 13),  // "addRecipeInfo"
-        QT_MOC_LITERAL(121, 16),  // "deleteRecipeInfo"
-        QT_MOC_LITERAL(138, 20),  // "deleteThisRecipeInfo"
-        QT_MOC_LITERAL(159, 16),  // "editRecipeWindow"
-        QT_MOC_LITERAL(176, 9),  // "addRecipe"
-        QT_MOC_LITERAL(186, 16),  // "editRecipeButton"
-        QT_MOC_LITERAL(203, 9),  // "escButton"
-        QT_MOC_LITERAL(213, 18),  // "setSearchStartDate"
-        QT_MOC_LITERAL(232, 16),  // "setSearchEndDate"
-        QT_MOC_LITERAL(249, 10),  // "onDateView"
-        QT_MOC_LITERAL(260, 14),  // "deleteDatePlan"
-        QT_MOC_LITERAL(275, 18),  // "onDateInputeWindow"
-        QT_MOC_LITERAL(294, 12)   // "editDateInfo"
+        QT_MOC_LITERAL(15, 14),  // "openMainWindow"
+        QT_MOC_LITERAL(30, 0),  // ""
+        QT_MOC_LITERAL(31, 21),  // "openRecipeInputWindow"
+        QT_MOC_LITERAL(53, 20),  // "openRecipeListWindow"
+        QT_MOC_LITERAL(74, 20),  // "openRecipeViewWindow"
+        QT_MOC_LITERAL(95, 11),  // "QModelIndex"
+        QT_MOC_LITERAL(107, 15),  // "InputRecipeInfo"
+        QT_MOC_LITERAL(123, 28),  // "openRecipeInputWindowForEdit"
+        QT_MOC_LITERAL(152, 16),  // "deleteRecipeInfo"
+        QT_MOC_LITERAL(169, 20),  // "deleteThisRecipeInfo"
+        QT_MOC_LITERAL(190, 19),  // "setRecipeSearchInfo"
+        QT_MOC_LITERAL(210, 19),  // "openDateInputWindow"
+        QT_MOC_LITERAL(230, 18),  // "openDateListWindow"
+        QT_MOC_LITERAL(249, 18),  // "openDateViewWindow"
+        QT_MOC_LITERAL(268, 13),  // "InputDateInfo"
+        QT_MOC_LITERAL(282, 14),  // "deleteDateInfo"
+        QT_MOC_LITERAL(297, 26),  // "openDateInputWindowForEdit"
+        QT_MOC_LITERAL(324, 18),  // "deleteThisDateInfo"
+        QT_MOC_LITERAL(343, 17)   // "setDateSearchInfo"
     },
     "OOP_Project_Qt",
-    "mainButtonClicked",
+    "openMainWindow",
     "",
-    "recipe_ButtonClicked",
-    "date_ButtonClicked",
-    "callRecipeInfo",
+    "openRecipeInputWindow",
+    "openRecipeListWindow",
+    "openRecipeViewWindow",
     "QModelIndex",
-    "index",
-    "addRecipeInfo",
+    "InputRecipeInfo",
+    "openRecipeInputWindowForEdit",
     "deleteRecipeInfo",
     "deleteThisRecipeInfo",
-    "editRecipeWindow",
-    "addRecipe",
-    "editRecipeButton",
-    "escButton",
-    "setSearchStartDate",
-    "setSearchEndDate",
-    "onDateView",
-    "deleteDatePlan",
-    "onDateInputeWindow",
-    "editDateInfo"
+    "setRecipeSearchInfo",
+    "openDateInputWindow",
+    "openDateListWindow",
+    "openDateViewWindow",
+    "InputDateInfo",
+    "deleteDateInfo",
+    "openDateInputWindowForEdit",
+    "deleteThisDateInfo",
+    "setDateSearchInfo"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -156,25 +152,25 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSOOP_Project_QtENDCLASS[] = {
        3,    0,  117,    2, 0x0a,    2 /* Public */,
        4,    0,  118,    2, 0x0a,    3 /* Public */,
        5,    1,  119,    2, 0x0a,    4 /* Public */,
-       8,    0,  122,    2, 0x0a,    6 /* Public */,
-       9,    0,  123,    2, 0x0a,    7 /* Public */,
-      10,    0,  124,    2, 0x0a,    8 /* Public */,
-      11,    0,  125,    2, 0x0a,    9 /* Public */,
-      12,    0,  126,    2, 0x0a,   10 /* Public */,
-      13,    0,  127,    2, 0x0a,   11 /* Public */,
-      14,    0,  128,    2, 0x0a,   12 /* Public */,
-      15,    0,  129,    2, 0x0a,   13 /* Public */,
-      16,    0,  130,    2, 0x0a,   14 /* Public */,
-      17,    0,  131,    2, 0x0a,   15 /* Public */,
-      18,    0,  132,    2, 0x0a,   16 /* Public */,
-      19,    0,  133,    2, 0x0a,   17 /* Public */,
-      20,    0,  134,    2, 0x0a,   18 /* Public */,
+       7,    0,  122,    2, 0x0a,    6 /* Public */,
+       8,    0,  123,    2, 0x0a,    7 /* Public */,
+       9,    0,  124,    2, 0x0a,    8 /* Public */,
+      10,    0,  125,    2, 0x0a,    9 /* Public */,
+      11,    0,  126,    2, 0x0a,   10 /* Public */,
+      12,    0,  127,    2, 0x0a,   11 /* Public */,
+      13,    0,  128,    2, 0x0a,   12 /* Public */,
+      14,    0,  129,    2, 0x0a,   13 /* Public */,
+      15,    0,  130,    2, 0x0a,   14 /* Public */,
+      16,    0,  131,    2, 0x0a,   15 /* Public */,
+      17,    0,  132,    2, 0x0a,   16 /* Public */,
+      18,    0,  133,    2, 0x0a,   17 /* Public */,
+      19,    0,  134,    2, 0x0a,   18 /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 6,    2,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -201,40 +197,40 @@ Q_CONSTINIT const QMetaObject OOP_Project_Qt::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSOOP_Project_QtENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<OOP_Project_Qt, std::true_type>,
-        // method 'mainButtonClicked'
+        // method 'openMainWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'recipe_ButtonClicked'
+        // method 'openRecipeInputWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'date_ButtonClicked'
+        // method 'openRecipeListWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'callRecipeInfo'
+        // method 'openRecipeViewWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QModelIndex, std::false_type>,
-        // method 'addRecipeInfo'
+        // method 'InputRecipeInfo'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'openRecipeInputWindowForEdit'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'deleteRecipeInfo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'deleteThisRecipeInfo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'editRecipeWindow'
+        // method 'setRecipeSearchInfo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'addRecipe'
+        // method 'openDateInputWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'editRecipeButton'
+        // method 'openDateListWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'escButton'
+        // method 'openDateViewWindow'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'setSearchStartDate'
+        // method 'InputDateInfo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'setSearchEndDate'
+        // method 'deleteDateInfo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'onDateView'
+        // method 'openDateInputWindowForEdit'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'deleteDatePlan'
+        // method 'deleteThisDateInfo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'onDateInputeWindow'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'editDateInfo'
+        // method 'setDateSearchInfo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -246,23 +242,23 @@ void OOP_Project_Qt::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         auto *_t = static_cast<OOP_Project_Qt *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->mainButtonClicked(); break;
-        case 1: _t->recipe_ButtonClicked(); break;
-        case 2: _t->date_ButtonClicked(); break;
-        case 3: _t->callRecipeInfo((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
-        case 4: _t->addRecipeInfo(); break;
-        case 5: _t->deleteRecipeInfo(); break;
-        case 6: _t->deleteThisRecipeInfo(); break;
-        case 7: _t->editRecipeWindow(); break;
-        case 8: _t->addRecipe(); break;
-        case 9: _t->editRecipeButton(); break;
-        case 10: _t->escButton(); break;
-        case 11: _t->setSearchStartDate(); break;
-        case 12: _t->setSearchEndDate(); break;
-        case 13: _t->onDateView(); break;
-        case 14: _t->deleteDatePlan(); break;
-        case 15: _t->onDateInputeWindow(); break;
-        case 16: _t->editDateInfo(); break;
+        case 0: _t->openMainWindow(); break;
+        case 1: _t->openRecipeInputWindow(); break;
+        case 2: _t->openRecipeListWindow(); break;
+        case 3: _t->openRecipeViewWindow((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 4: _t->InputRecipeInfo(); break;
+        case 5: _t->openRecipeInputWindowForEdit(); break;
+        case 6: _t->deleteRecipeInfo(); break;
+        case 7: _t->deleteThisRecipeInfo(); break;
+        case 8: _t->setRecipeSearchInfo(); break;
+        case 9: _t->openDateInputWindow(); break;
+        case 10: _t->openDateListWindow(); break;
+        case 11: _t->openDateViewWindow(); break;
+        case 12: _t->InputDateInfo(); break;
+        case 13: _t->deleteDateInfo(); break;
+        case 14: _t->openDateInputWindowForEdit(); break;
+        case 15: _t->deleteThisDateInfo(); break;
+        case 16: _t->setDateSearchInfo(); break;
         default: ;
         }
     }

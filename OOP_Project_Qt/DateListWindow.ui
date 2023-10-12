@@ -88,7 +88,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QDateTimeEdit" name="dateTimeEdit"/>
+         <widget class="QDateTimeEdit" name="StartDate"/>
         </item>
         <item>
          <widget class="QLabel" name="label_2">
@@ -98,7 +98,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QDateTimeEdit" name="dateTimeEdit_2"/>
+         <widget class="QDateTimeEdit" name="EndDate"/>
         </item>
         <item>
          <spacer name="horizontalSpacer_5">
@@ -116,6 +116,9 @@
        </layout>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="SearchText"/>
     </item>
     <item>
      <widget class="QListWidget" name="listWidget"/>

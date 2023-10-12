@@ -2,12 +2,16 @@
 
 #include <QtWidgets/QMainWindow>
 #include <qmessagebox.h>
-#include "ui_MainUI.h"
-#include "ui_Recipe_List.h"
-#include "ui_RecipeWindow.h"
-#include "ui_AddRecipeUi.h"
-#include "ui_EditRecipeUi.h"
+
+#include "greeter.h"
+
+#include "ui_MainWindow.h"
+#include "ui_RecipeListWindow.h"
+#include "ui_RecipeInputWindow.h"
+#include "ui_RecipeViewWindow.h"
+#include "ui_DateListWindow.h"
 #include "ui_DateInputWindow.h"
+#include "ui_DateViewWindow.h"
 
 class OOP_Project_Qt : public QMainWindow
 {
@@ -18,44 +22,46 @@ public:
     ~OOP_Project_Qt();
 
 private:
-    Ui::MainUI main_ui;
-    Ui::Recipe_List recipe_ui;
-    Ui::Recipe recipeWindow_ui;
-    Ui::AddRecipe addRecipe_ui;
-    Ui::EditRecipe editRecipe_ui;
+    Greeter greeter;
+
+    //메인창
+    Ui::MainWindow main;
+
+    //레시피 관리 창
+    Ui::RecipeListWindow recipeList;
+    Ui::RecipeViewWindow recipeView;
+    Ui::RecipeInputWindow recipeInput;
+
+    //일정 관리 창
+    Ui::DateInputWindow dateInput;
+    Ui::DateListWindow dateList;
+    Ui::DateViewWindow dateView;
 
 public slots:
-    //공통 사용
-    void mainButtonClicked();
-    void recipe_ButtonClicked();
-    void date_ButtonClicked();
+    //메인창 구성
+    void openMainWindow();
 
-    //레시피 관리 화면
-    void callRecipeInfo(QModelIndex index);
-    void addRecipeInfo();
+    //레시피 관리 창 구성
+    void openRecipeInputWindow();
+    void openRecipeListWindow();
+    void openRecipeViewWindow(QModelIndex);
+
+    //레시피 관리
+    void InputRecipeInfo();
+    void openRecipeInputWindowForEdit();
     void deleteRecipeInfo();
-
-    //레시피 정보 화면
     void deleteThisRecipeInfo();
-    void editRecipeWindow();
+    void setRecipeSearchInfo();
 
-    //레시피 추가 화면
-    void addRecipe();
+    //일정 관리 창 구성
+    void openDateInputWindow();
+    void openDateListWindow();
+    void openDateViewWindow();
 
-    //레시피 수정화면
-    void editRecipeButton();
-    void escButton();
-
-    //일정 리스트 화면
-    void setSearchStartDate();
-    void setSearchEndDate();
-    void onDateView();
-    void deleteDatePlan();
-    void onDateInputeWindow();
-
-    //일정 입력 화면
-    
-
-    //일정 확인 화면
-    void editDateInfo();
+    //일정 관리
+    void InputDateInfo();
+    void deleteDateInfo();
+    void openDateInputWindowForEdit();
+    void deleteThisDateInfo();
+    void setDateSearchInfo();
 };
