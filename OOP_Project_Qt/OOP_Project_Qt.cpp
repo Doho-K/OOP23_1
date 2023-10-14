@@ -1,6 +1,7 @@
 #include "OOP_Project_Qt.h"
 #include "qpushbutton.h"
 #include "qstring.h"
+#include <sstream>
 
 using namespace std;
 
@@ -144,11 +145,15 @@ void OOP_Project_Qt::deleteThisRecipeInfo() {
 void OOP_Project_Qt::openDateListWindow() {
     dateList.setupUi(this);
 
+    setDateSearchInfo();
+
     connect(dateList.MainButton, SIGNAL(clicked()), this, SLOT(openMainWindow()));
 
     connect(dateList.StartDate, SIGNAL(dateTimeChanged(const QDateTime)), this, SLOT(setDateSearchInfo()));
     connect(dateList.EndDate, SIGNAL(dateTimeChanged(const QDateTime)), this, SLOT(setDateSearchInfo()));
     connect(dateList.SearchText, SIGNAL(textChanged(const QString)), this, SLOT(setDateSearchInfo()));
+
+    connect(dateList.listWidget, SIGNAL(doubleClicked(const QModelIndex)), this, SLOT(openDateViewWindow()));
 
     connect(dateList.AddButton, SIGNAL(clicked()), this, SLOT(openDateInputWindow()));
     connect(dateList.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteDateInfo()));
@@ -157,14 +162,37 @@ void OOP_Project_Qt::openDateListWindow() {
 void OOP_Project_Qt::openDateInputWindow() {
     dateInput.setupUi(this);
 
+    dateInput.morningMeal->addItem(QString::fromStdString(""));
+    dateInput.lunchMeal->addItem(QString::fromStdString(""));
+    dateInput.dinnerMeal->addItem(QString::fromStdString(""));
     //목록
+    for (Recipe recipe : greeter.callRecipe()) {
+        dateInput.morningMeal->addItem(QString::fromStdString(recipe.getName()));
+        dateInput.lunchMeal->addItem(QString::fromStdString(recipe.getName()));
+        dateInput.dinnerMeal->addItem(QString::fromStdString(recipe.getName()));
+    }
 
     connect(dateInput.saveButton, SIGNAL(clicked()), SLOT(InputDateInfo()));
     connect(dateInput.escButton, SIGNAL(clicked()), SLOT(openDateListWindow()));
 }
 
 void OOP_Project_Qt::openDateViewWindow() {
+    istringstream s(dateList.listWidget->currentItem()->text().toStdString());
+    string t;
+    getline(s, t, ':');
     dateView.setupUi(this);
+
+    date target = greeter.callDate(stoi(t));
+
+    dateView.DateName->setText(QString::fromStdString(target.getDateName()));
+    dateView.dateEdit->setDate(QDate(target.getDateTime() / 10000, (target.getDateTime() % 10000) / 100, target.getDateTime() % 100));
+
+    dateView.morningMeal->setText(QString::fromStdString(target.getmealName(0)));
+
+    dateView.lunch->setText(QString::fromStdString(target.getmealName(1)));
+
+    dateView.dinner->setText(QString::fromStdString(target.getmealName(2)));
+
 
     connect(dateView.editButton, SIGNAL(clicked()), SLOT(openDateInputWindowForEdit()));
     connect(dateView.deleteButton, SIGNAL(clicked()), SLOT(deleteThisDateInfo()));
@@ -172,6 +200,13 @@ void OOP_Project_Qt::openDateViewWindow() {
 }
 
 void OOP_Project_Qt::InputDateInfo() {
+    int dateNum = dateInput.dateTime->date().year() * 10000 + dateInput.dateTime->date().month() * 100 + dateInput.dateTime->date().day();
+    vector<string> mealInfo;
+    mealInfo.push_back(dateInput.morningMeal->currentText().toStdString());
+    mealInfo.push_back(dateInput.lunchMeal->currentText().toStdString());
+    mealInfo.push_back(dateInput.dinnerMeal->currentText().toStdString());
+
+    greeter.addPlan(dateNum, dateInput.dateName->text().toStdString(), mealInfo);
     openDateListWindow();
 }
 
@@ -194,5 +229,7 @@ void OOP_Project_Qt::deleteThisDateInfo() {
 }
 
 void OOP_Project_Qt::setDateSearchInfo() {
-    //검색 결과 갱신
+    for (date _date : greeter.callDateList()) {
+        dateList.listWidget->addItem(QString::fromStdString(std::to_string(_date.getDateTime()) + ":" + _date.getDateName()));
+    }
 }

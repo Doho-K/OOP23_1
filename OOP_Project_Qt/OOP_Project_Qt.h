@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include <qmessagebox.h>
+#include <string>
 
 #include "greeter.h"
 

@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="DateName">
       <property name="font">
        <font>
         <pointsize>20</pointsize>
@@ -40,11 +40,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QDateTimeEdit" name="dateTimeEdit">
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
+         <widget class="QDateEdit" name="dateEdit"/>
         </item>
        </layout>
       </item>
@@ -55,7 +51,7 @@
           <item>
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>오전</string>
+             <string>오전 : </string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -63,7 +59,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox"/>
+           <widget class="QLabel" name="morningMeal">
+            <property name="text">
+             <string>식사</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -80,9 +80,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox">
-            <property name="readOnly">
-             <bool>true</bool>
+           <widget class="QLabel" name="numOfMorning">
+            <property name="text">
+             <string>0명</string>
             </property>
            </widget>
           </item>
@@ -97,7 +97,7 @@
           <item>
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>오후</string>
+             <string>오후 : </string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -105,7 +105,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_4"/>
+           <widget class="QLabel" name="lunch">
+            <property name="text">
+             <string>식사</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -122,9 +126,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_2">
-            <property name="readOnly">
-             <bool>true</bool>
+           <widget class="QLabel" name="numOfLunch">
+            <property name="text">
+             <string>0명</string>
             </property>
            </widget>
           </item>
@@ -139,7 +143,7 @@
           <item>
            <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>저녁</string>
+             <string>저녁 : </string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -147,7 +151,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_2"/>
+           <widget class="QLabel" name="dinner">
+            <property name="text">
+             <string>식사</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -164,9 +172,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_3">
-            <property name="readOnly">
-             <bool>true</bool>
+           <widget class="QLabel" name="numOfDinner">
+            <property name="text">
+             <string>0명</string>
             </property>
            </widget>
           </item>
@@ -213,7 +221,7 @@
      </layout>
     </item>
     <item>
-     <widget class="QTableWidget" name="tableWidget"/>
+     <widget class="QTextBrowser" name="textBrowser"/>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_5">

@@ -6,10 +6,11 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
-/*
+
 class date {
 private:
     string dateName; //Name of the date
@@ -99,9 +100,10 @@ public:
         loadPlanFile.close();
     }
 
+
     void reviewPlan() { //Show whole Plan
         list<date>::iterator dateListIt; //Iterator declare
-        this->dateList.sort(); //Sorting plan
+        //this->dateList.sort(); //Sorting plan
         //Print everything looping whole list
         for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
             cout << "Plan Name: " << dateListIt->getDateName() << "\n";
@@ -128,8 +130,9 @@ public:
     }
 
     void sortPlan() {
-        this->dateList.sort();
+        //this->dateList.sort();
     }
+
     date searchPlan(string dateName) { //Overload searchPlan
         list<date>::iterator dateListIt; //반복자(iterator) 선언, 리스트의 특정 노드를 가리킴
 
@@ -154,8 +157,12 @@ public:
         }
         this->dateList.erase(dateListIt);
     }
+    void editPlan(int editDateNum, date editDate) { //planner 수정, editDateNum: 수정할 객체index
+        deletePlan(editDateNum);
+        addPlan(editDate);
+    }
 };
-*/
+
 class Recipe
 {
 private:
@@ -182,7 +189,7 @@ public:
     vector<int> getIngredientsScale() {
         return Ingredients_Scale;
     }
-
+    
     int getCookingTime() {
         return CookingTime;
     }
@@ -246,6 +253,8 @@ public:
         cout << "조리 시간: " << CookingTime << "\n";
         cout << "조리 방법: " << getContent() << "\n";
     }
+
+    
 };
 
 class RecipeDB
@@ -256,6 +265,58 @@ private:
 
 public:
     RecipeDB() {};
+    void read_DB() {
+        ifstream file("RecipeDBfile.txt");
+        string line;
+
+
+        while (getline(file, line)) {
+            istringstream iss(line);
+            string token;
+
+            if (line.empty()) {
+                continue;
+            }
+
+            getline(iss, token, '/');
+            string name = token;
+            //cout << name << "\n";
+
+            getline(iss, token, '/');
+            int time = stoi(token);
+            //cout << time << "\n";
+
+            getline(iss, token, '/');
+            istringstream ingredient_stream(token);
+
+            vector<string> ingredient_name;
+            vector<int> ingredient_scale;
+
+            while (getline(ingredient_stream, token, ';')) {
+                size_t pos = token.find(':');
+                if (pos != string::npos) {
+                    string ingr_name = token.substr(0, pos);
+                    int ingr_scale = stoi(token.substr(pos + 1));
+                    //cout << ingr_name << " " << ingr_scale << "\n";
+                    ingredient_name.push_back(ingr_name);
+                    ingredient_scale.push_back(ingr_scale);
+                }
+            }
+
+            getline(iss, token, '/');
+            string Contents = token;
+            //cout << Contents << "\n";
+
+            Recipe Recipe_added;
+            Recipe_added.setName(name);
+            Recipe_added.setTime(time);
+            Recipe_added.setIngredient(ingredient_name, ingredient_scale);
+            Recipe_added.setContents(Contents);
+
+            R_list.push_back(Recipe_added);
+        }
+    }
+
     void add(string name, vector<string> ingredients_name,vector<int>ingredients_scale,int time,string contents) {
         Recipe newRecipe;
         newRecipe.setName(name);
@@ -310,8 +371,8 @@ public:
     string search_recipeName(string inputstr) {
         string str;
         for (int i = 0; i < R_list.size(); i++) {
-            if (R_list[i].getName().compare(inputstr)) { //input으로 받은 문자열 = recipe 문자열 (비교)
-                str = R_list[i].getName(); // str에 현재 Recipe의 이름 string 저장
+            if (R_list[i].getName() == inputstr) { //input으로 받은 string이 RecipeDB의 Recipe 이름 string에 포함되어 있으면
+                str = R_list[i].getName(); // str에 저장
                 break;
             }
         }
@@ -333,24 +394,32 @@ public:
             cout << i + 1 << ". " << R_list[i].getName() << "\n";
         }
     }; // 모든 레시피 이름 출력
+
+    void Push_RecipeDB() {
+        ofstream outputFile("RecipeDBfile.txt");
+        for (int i = 0; i < R_list.size(); i++) {
+            outputFile << R_list[i].getName() << '/' << R_list[i].getCookingTime() << '/';
+            for (int j = 0; j < R_list[i].getIngredientsName().size(); j++) {
+                outputFile << R_list[i].getIngredientsName()[j] << ':' << R_list[i].getIngredientsScale()[j] << ';';
+            }
+            outputFile << '/' << R_list[i].getContent() << '/' << '\n' << '\n';
+        }
+        outputFile.close();
+        cout << "DB completely saved ";
+    }
 };
 
 class Greeter {
 private:
     RecipeDB Db;
-    //Planner Pl;
+    Planner Pl;
 public:
-    /*
     Greeter(RecipeDB db, Planner pl) {//initialization of Greeter
         Db = db;
         Pl = pl;
-    }*/
-    Greeter() {
     }
 
-    Recipe searchExactRecipe(string name) {
-        return Db.search_recipe(name);
-    }
+    Greeter(){}
 
     vector<Recipe> callRecipe() {//Return all Recipe
         return Db.search_list_2("");
@@ -360,6 +429,9 @@ public:
         return Db.search_list_2(name);
     }
 
+    Recipe searchExactRecipe(string Name) {
+        return Db.search_recipe(Name);
+    }
     void addRecipe(string name, vector<string> ingredients_name, vector<int>ingredients_scale, int time, string contents) {//Add recipe
         Db.add(name, ingredients_name, ingredients_scale, time,contents);
     }
@@ -370,40 +442,64 @@ public:
     void deleteRecipe(string input_Name) {
         //Not yet
     }
-    /*
     list<date> callDateList() {
         return Pl.getPlan();
     }
-    date callDate(string name) {
-        return Pl.searchPlan(name);
-    }*/
+    date callDate(int date) {
+        return Pl.searchPlan(date);
+    }
+    list<date> arrangeDate() {
+        Pl.sortPlan();
+        return Pl.getPlan();
+    }
 
-    void createPlan() {
+    void addPlan(int dateTime, string dateName, vector<string> mealName) {
+        date dt = date(dateName, dateTime);
+        for (int i = 0; i < 3; i++) {
+            dt.setMealName(i, mealName[i]);
+        }
+        Pl.addPlan(dt);
+    }
 
+    list<date> getWeekPlan() {
+        list<date> week;
+        list<date> all = Pl.getPlan();
+        Pl.sortPlan();
+        int count = 0;
+        for (const date& item : all) {
+            week.push_back(item);
+            count++;
+            if (count == 7) {
+                break;
+            }
+        }
+        return week;
     }
     
 
 };
-/*
+
 class Meal
 {
 private:
-    RecipeDB DB;
+    RecipeDB* mealDB;
     Recipe Meal_Recipe;//Recipe of Meal
     vector<string> MealIngredient_Name;//Name of Ingredient
     vector<int> MealIngredient_Scale;//Scale of Ingredient
     int num_people;//Number of people who eat meal
+    string Meal_Name;
 
 public:
-    Meal() {}
+    Meal(RecipeDB* db) : mealDB(db) {}
 
-    string getMeal_Name(string str) {
-        return DB.search_recipeName(str);
+    string getMeal_Name() {
+        return Meal_Name;
     }
 
-    Recipe getMeal_Recipe(string str) {
-        return DB.search_recipe(str);
+    Recipe getMeal_Recipe() {
+        return Meal_Recipe;
     } //recipe instance return
+
 
     int getNum_people() {
         return num_people;
@@ -417,12 +513,20 @@ public:
         return MealIngredient_Scale;
     }
 
+    void setMeal_name(string str) {
+
+        Meal_Name = mealDB->search_recipeName(str);
+    }
+
     void setNum_people(int inputNum) {
         num_people = inputNum;
     }
 
-    void setMealIngredient(string str) {
-        Meal_Recipe = getMeal_Recipe(str);
+    void setMeal_Recipe(string str) {
+        Meal_Recipe = mealDB->search_recipe(str);
+    }
+
+    void setMealIngredient() {
         MealIngredient_Name = Meal_Recipe.getIngredientsName();
         MealIngredient_Scale = Meal_Recipe.getIngredientsScale();
 
@@ -431,5 +535,4 @@ public:
         } // 식수 반영한 재료 비율
     }
 };
-*/
 #endif

@@ -11,17 +11,14 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -32,36 +29,36 @@ class Ui_DateViewWindow
 public:
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
-    QLabel *label_2;
+    QLabel *DateName;
     QHBoxLayout *horizontalLayout_3;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
-    QDateTimeEdit *dateTimeEdit;
+    QDateEdit *dateEdit;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
-    QComboBox *comboBox;
+    QLabel *morningMeal;
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_5;
-    QSpinBox *spinBox;
+    QLabel *numOfMorning;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_6;
-    QComboBox *comboBox_4;
+    QLabel *lunch;
     QHBoxLayout *horizontalLayout_10;
     QLabel *label_7;
-    QSpinBox *spinBox_2;
+    QLabel *numOfLunch;
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_4;
-    QComboBox *comboBox_2;
+    QLabel *dinner;
     QHBoxLayout *horizontalLayout_11;
     QLabel *label_8;
-    QSpinBox *spinBox_3;
+    QLabel *numOfDinner;
     QHBoxLayout *horizontalLayout_8;
     QLabel *label_9;
     QSpacerItem *horizontalSpacer_2;
-    QTableWidget *tableWidget;
+    QTextBrowser *textBrowser;
     QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer;
     QPushButton *editButton;
@@ -78,14 +75,14 @@ public:
         centralwidget->setObjectName("centralwidget");
         verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName("verticalLayout");
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName("label_2");
+        DateName = new QLabel(centralwidget);
+        DateName->setObjectName("DateName");
         QFont font;
         font.setPointSize(20);
         font.setBold(true);
-        label_2->setFont(font);
+        DateName->setFont(font);
 
-        verticalLayout->addWidget(label_2);
+        verticalLayout->addWidget(DateName);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
@@ -96,11 +93,10 @@ public:
 
         horizontalLayout->addWidget(label);
 
-        dateTimeEdit = new QDateTimeEdit(centralwidget);
-        dateTimeEdit->setObjectName("dateTimeEdit");
-        dateTimeEdit->setReadOnly(true);
+        dateEdit = new QDateEdit(centralwidget);
+        dateEdit->setObjectName("dateEdit");
 
-        horizontalLayout->addWidget(dateTimeEdit);
+        horizontalLayout->addWidget(dateEdit);
 
 
         horizontalLayout_3->addLayout(horizontalLayout);
@@ -115,10 +111,10 @@ public:
 
         horizontalLayout_2->addWidget(label_3);
 
-        comboBox = new QComboBox(centralwidget);
-        comboBox->setObjectName("comboBox");
+        morningMeal = new QLabel(centralwidget);
+        morningMeal->setObjectName("morningMeal");
 
-        horizontalLayout_2->addWidget(comboBox);
+        horizontalLayout_2->addWidget(morningMeal);
 
 
         verticalLayout_3->addLayout(horizontalLayout_2);
@@ -131,11 +127,10 @@ public:
 
         horizontalLayout_9->addWidget(label_5);
 
-        spinBox = new QSpinBox(centralwidget);
-        spinBox->setObjectName("spinBox");
-        spinBox->setReadOnly(true);
+        numOfMorning = new QLabel(centralwidget);
+        numOfMorning->setObjectName("numOfMorning");
 
-        horizontalLayout_9->addWidget(spinBox);
+        horizontalLayout_9->addWidget(numOfMorning);
 
 
         verticalLayout_3->addLayout(horizontalLayout_9);
@@ -153,10 +148,10 @@ public:
 
         horizontalLayout_6->addWidget(label_6);
 
-        comboBox_4 = new QComboBox(centralwidget);
-        comboBox_4->setObjectName("comboBox_4");
+        lunch = new QLabel(centralwidget);
+        lunch->setObjectName("lunch");
 
-        horizontalLayout_6->addWidget(comboBox_4);
+        horizontalLayout_6->addWidget(lunch);
 
 
         verticalLayout_4->addLayout(horizontalLayout_6);
@@ -169,11 +164,10 @@ public:
 
         horizontalLayout_10->addWidget(label_7);
 
-        spinBox_2 = new QSpinBox(centralwidget);
-        spinBox_2->setObjectName("spinBox_2");
-        spinBox_2->setReadOnly(true);
+        numOfLunch = new QLabel(centralwidget);
+        numOfLunch->setObjectName("numOfLunch");
 
-        horizontalLayout_10->addWidget(spinBox_2);
+        horizontalLayout_10->addWidget(numOfLunch);
 
 
         verticalLayout_4->addLayout(horizontalLayout_10);
@@ -191,10 +185,10 @@ public:
 
         horizontalLayout_4->addWidget(label_4);
 
-        comboBox_2 = new QComboBox(centralwidget);
-        comboBox_2->setObjectName("comboBox_2");
+        dinner = new QLabel(centralwidget);
+        dinner->setObjectName("dinner");
 
-        horizontalLayout_4->addWidget(comboBox_2);
+        horizontalLayout_4->addWidget(dinner);
 
 
         verticalLayout_5->addLayout(horizontalLayout_4);
@@ -207,11 +201,10 @@ public:
 
         horizontalLayout_11->addWidget(label_8);
 
-        spinBox_3 = new QSpinBox(centralwidget);
-        spinBox_3->setObjectName("spinBox_3");
-        spinBox_3->setReadOnly(true);
+        numOfDinner = new QLabel(centralwidget);
+        numOfDinner->setObjectName("numOfDinner");
 
-        horizontalLayout_11->addWidget(spinBox_3);
+        horizontalLayout_11->addWidget(numOfDinner);
 
 
         verticalLayout_5->addLayout(horizontalLayout_11);
@@ -239,10 +232,10 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_8);
 
-        tableWidget = new QTableWidget(centralwidget);
-        tableWidget->setObjectName("tableWidget");
+        textBrowser = new QTextBrowser(centralwidget);
+        textBrowser->setObjectName("textBrowser");
 
-        verticalLayout->addWidget(tableWidget);
+        verticalLayout->addWidget(textBrowser);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName("horizontalLayout_5");
@@ -281,14 +274,20 @@ public:
     void retranslateUi(QMainWindow *DateViewWindow)
     {
         DateViewWindow->setWindowTitle(QCoreApplication::translate("DateViewWindow", "DateView", nullptr));
-        label_2->setText(QCoreApplication::translate("DateViewWindow", "\354\235\274\354\240\225", nullptr));
+        DateName->setText(QCoreApplication::translate("DateViewWindow", "\354\235\274\354\240\225", nullptr));
         label->setText(QCoreApplication::translate("DateViewWindow", "\353\202\240\354\247\234:", nullptr));
-        label_3->setText(QCoreApplication::translate("DateViewWindow", "\354\230\244\354\240\204", nullptr));
+        label_3->setText(QCoreApplication::translate("DateViewWindow", "\354\230\244\354\240\204 : ", nullptr));
+        morningMeal->setText(QCoreApplication::translate("DateViewWindow", "\354\213\235\354\202\254", nullptr));
         label_5->setText(QCoreApplication::translate("DateViewWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        label_6->setText(QCoreApplication::translate("DateViewWindow", "\354\230\244\355\233\204", nullptr));
+        numOfMorning->setText(QCoreApplication::translate("DateViewWindow", "0\353\252\205", nullptr));
+        label_6->setText(QCoreApplication::translate("DateViewWindow", "\354\230\244\355\233\204 : ", nullptr));
+        lunch->setText(QCoreApplication::translate("DateViewWindow", "\354\213\235\354\202\254", nullptr));
         label_7->setText(QCoreApplication::translate("DateViewWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        label_4->setText(QCoreApplication::translate("DateViewWindow", "\354\240\200\353\205\201", nullptr));
+        numOfLunch->setText(QCoreApplication::translate("DateViewWindow", "0\353\252\205", nullptr));
+        label_4->setText(QCoreApplication::translate("DateViewWindow", "\354\240\200\353\205\201 : ", nullptr));
+        dinner->setText(QCoreApplication::translate("DateViewWindow", "\354\213\235\354\202\254", nullptr));
         label_8->setText(QCoreApplication::translate("DateViewWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
+        numOfDinner->setText(QCoreApplication::translate("DateViewWindow", "0\353\252\205", nullptr));
         label_9->setText(QCoreApplication::translate("DateViewWindow", "\354\264\235 \354\236\254\353\243\214 \354\226\221", nullptr));
         editButton->setText(QCoreApplication::translate("DateViewWindow", "\354\210\230\354\240\225", nullptr));
         deleteButton->setText(QCoreApplication::translate("DateViewWindow", "\354\202\255\354\240\234", nullptr));
