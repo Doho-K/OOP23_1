@@ -19,6 +19,19 @@ OOP_Project_Qt::~OOP_Project_Qt()
 void OOP_Project_Qt::openMainWindow() {
     main.setupUi(this);
 
+    list<date> dates = greeter.callDateList();
+    QLabel* dateLables[7] = { main.date1, main.date2, main.date3, main.date4, main.date5, main.date6, main.date7 };
+    list<date>::iterator iter = dates.begin();
+    int i = 0;
+    for (iter; iter != dates.end(); iter++) {
+        if (i > 6)
+            break;
+        int day = (*iter).getDateTime();
+        string dayString = std::to_string(day / 10000) + "-" + std::to_string((day % 10000) / 100) + "-" + std::to_string(day % 100);
+        dateLables[i++]->setText(QString::fromStdString(dayString));
+    }
+
+
     connect(main.recipeButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
     connect(main.dateButton, SIGNAL(clicked()), this, SLOT(openDateListWindow()));
 }
@@ -111,7 +124,6 @@ void OOP_Project_Qt::setRecipeSearchInfo() {
        recipeList.listWidget->addItem(QString::fromStdString(_recipe.getName()));
     }
 }
-
 
 void OOP_Project_Qt::openRecipeInputWindowForEdit() {
     Recipe recipe = greeter.searchExactRecipe(recipeView.FoodNameLable->text().toStdString());
