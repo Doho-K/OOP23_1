@@ -2,5 +2,5 @@ Spaghetti Carbonara/30/Pasta:200;Pancetta:100;Eggs:100;Parmesan Cheese:50;Garlic
 
 Chicken Alfredo Pasta/45/Chicken Breast:400;Fettuccine:250;Heavy Cream:240;Butter:60;Parmesan Cheese:100;Garlic:10;/Cook pasta. Sauté chicken and garlic. Add cream, butter, and cheese. Toss with pasta. Season with salt and pepper./
 
-Chocolate Chip Cookies/20/Flour:240;Butter:226;Brown Sugar:220;White Sugar:100;Eggs:100;Vanilla Extract:5;Baking Soda:1;Chocolate Chips:200;/Cream butter and sugars. Add eggs and vanilla. Mix dry ingredients, add to wet. Stir in chocolate chips. Bake at 350°F (175°C) for 10-12 minutes./
+Chocolate Chip Cookies/20/Flour:240;Butter:226;Brown Sugar:220;White Sugar:100;Eggs:100;/Cream butter and sugars. Add eggs and vanilla. Mix dry ingredients, add to wet. Stir in chocolate chips. Bake at 350°F (175°C) for 10-12 minutes./
 

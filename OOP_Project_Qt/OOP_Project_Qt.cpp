@@ -37,7 +37,7 @@ void OOP_Project_Qt::openMainWindow() {
         if (day >= n) {
             //string dayString = std::to_string(day / 10000) + "-" + std::to_string((day % 10000) / 100) + "-" + std::to_string(day % 100);
             //dateLables[i]->setText(QString::fromStdString(dayString));
-            dateLables[i]->setText(QString::fromStdString(std::to_string(day)));
+            dateLables[i]->setText(QString::fromStdString(greeter.translateDateType(day)));
             dateMorningLables[i]->setText(QString::fromStdString((*iter).getMeal(0).getMeal_Name()));
             dateLunchLables[i]->setText(QString::fromStdString((*iter).getMeal(1).getMeal_Name()));
             dateDinnerLables[i]->setText(QString::fromStdString((*iter).getMeal(2).getMeal_Name()));
@@ -147,13 +147,13 @@ void OOP_Project_Qt::InputRecipeInfo() {
         }
 
         if (selectString != "") {
-            greeter.addRecipe(recipeInput.lineEdit->text().toStdString(), ingredient, numOfIngredient, recipeInput.cookTime->value(), recipeInput.textEdit->toPlainText().toStdString());
-        }
-        else {
             greeter.editRecipe(selectString, recipeInput.lineEdit->text().toStdString(), ingredient, numOfIngredient, recipeInput.cookTime->value(), recipeInput.textEdit->toPlainText().toStdString());
         }
+        else {
+            greeter.addRecipe(recipeInput.lineEdit->text().toStdString(), ingredient, numOfIngredient, recipeInput.cookTime->value(), recipeInput.textEdit->toPlainText().toStdString());
+        }
         greeter.saveEverything();
-
+        selectString = "";
         openRecipeListWindow();
     }
 }
@@ -171,8 +171,8 @@ void OOP_Project_Qt::setRecipeSearchInfo() {
 void OOP_Project_Qt::openRecipeInputWindowForEdit() {
     try
     {
-        Recipe recipe = greeter.searchExactRecipe(recipeView.FoodNameLable->text().toStdString());
-        selectString = recipe.getName();
+        selectString = recipeView.FoodNameLable->text().toStdString();
+        Recipe recipe = greeter.searchExactRecipe(selectString);
         recipeInput.setupUi(this);
 
         recipeInput.lineEdit->setText(QString::fromStdString(recipe.getName()));
@@ -261,6 +261,7 @@ void OOP_Project_Qt::openDateViewWindow() {
     istringstream s(selectString);
     string t;
     getline(s, t, ':');
+
     dateView.setupUi(this);
     
     try
@@ -319,7 +320,12 @@ void OOP_Project_Qt::InputDateInfo() {
 }
 
 void OOP_Project_Qt::deleteDateInfo() {
-    //
+    istringstream s(dateList.listWidget->currentItem()->text().toStdString());
+    string t;
+    getline(s, t, ':');
+
+    greeter.deletePlan(stoi(t));
+    setDateSearchInfo();
 }
 
 void OOP_Project_Qt::openDateInputWindowForEdit() {

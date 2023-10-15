@@ -65,12 +65,11 @@ void RecipeDB::add(string name, vector<string> ingredients_name, vector<int>ingr
 
 void RecipeDB::update(string input_Name, string newName, vector<string> inputingredient_Name, vector<int> inputingredient_scale, int time, string content) {
     for (int i = 0; i < R_list.size(); i++) {
-        if (R_list[i].getName().compare(input_Name)) {
+        if (R_list[i].getName().compare(input_Name) == 0) {
             R_list[i].setName(newName);
             R_list[i].setIngredient(inputingredient_Name, inputingredient_scale);
             R_list[i].setTime(time);
             R_list[i].setContents(content);
-
         }
     }
 }

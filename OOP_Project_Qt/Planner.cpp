@@ -23,13 +23,16 @@ void Planner::savePlan() { //Save plan in Txt File
             savePlanFile << dateListIt->getMeal(1).getNum_people() << "\n"; // 점심 식수인원
             savePlanFile << dateListIt->getMeal(2).getMeal_Name() << "\n"; //Dinner
             savePlanFile << dateListIt->getMeal(2).getNum_people() << "\n"; // 저녁 식수인원
+
         }
+        savePlanFile << "eof" << "\n";
     }
     else {
         cout << "Filestream Error";
     }
     sort();
     savePlanFile.close();
+
 }
 
 void Planner::loadPlan() { //txt파일에서 불러옴.
@@ -42,16 +45,26 @@ void Planner::loadPlan() { //txt파일에서 불러옴.
 
     if (loadPlanFile.is_open()) { //파일이 정상적으로 열렸다면
         while (!loadPlanFile.eof()) { //파일을 끝까지 읽으며, 다 읽으면 반복문 탈출
-            loadPlanFile >> newDateName;
-            loadPlanFile >> newDateTime;
-            loadPlanFile >> newMealName[0];
-            loadPlanFile >> personNum[0];
+            string tmp;
+            getline(loadPlanFile, tmp);
+            if (tmp == "eof") { break; }
+            newDateName = tmp;
+            getline(loadPlanFile, tmp);
+            newDateTime = stoi(tmp);
+            getline(loadPlanFile, tmp);
+            newMealName[0] = tmp;
+            getline(loadPlanFile, tmp);
+            personNum[0] = stoi(tmp);
 
-            loadPlanFile >> newMealName[1];
-            loadPlanFile >> personNum[1];
+            getline(loadPlanFile, tmp);
+            newMealName[1] = tmp;
+            getline(loadPlanFile, tmp);
+            personNum[1] = stoi(tmp);
 
-            loadPlanFile >> newMealName[2];
-            loadPlanFile >> personNum[2];
+            getline(loadPlanFile, tmp);
+            newMealName[2] = tmp;
+            getline(loadPlanFile, tmp);
+            personNum[2] = stoi(tmp);
 
             //새로운 date객체를 만들어 dateList에 push.
             date newDate(newDateName, newDateTime);
@@ -68,6 +81,7 @@ void Planner::loadPlan() { //txt파일에서 불러옴.
     }
     sort();
     loadPlanFile.close();
+
 }
 
 

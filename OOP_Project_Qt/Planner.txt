@@ -1,0 +1,9 @@
+Party
+20231015
+Spaghetti Carbonara
+1
+Spaghetti Carbonara
+2
+Chicken Alfredo Pasta
+1
+eof
