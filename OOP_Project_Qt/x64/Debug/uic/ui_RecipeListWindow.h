@@ -116,10 +116,10 @@ public:
     void retranslateUi(QMainWindow *RecipeListWindow)
     {
         RecipeListWindow->setWindowTitle(QCoreApplication::translate("RecipeListWindow", "OOP_Project", nullptr));
-        label->setText(QCoreApplication::translate("RecipeListWindow", "\353\240\210\354\213\234\355\224\274 \353\252\251\353\241\235", nullptr));
-        MainButton->setText(QCoreApplication::translate("RecipeListWindow", "\353\251\224\354\235\270\355\231\224\353\251\264\354\234\274\353\241\234 \353\217\214\354\225\204\352\260\200\352\270\260", nullptr));
-        AddButton->setText(QCoreApplication::translate("RecipeListWindow", "\354\266\224\352\260\200", nullptr));
-        DeleteButton->setText(QCoreApplication::translate("RecipeListWindow", "\354\202\255\354\240\234", nullptr));
+        label->setText(QCoreApplication::translate("RecipeListWindow", "Recipe List", nullptr));
+        MainButton->setText(QCoreApplication::translate("RecipeListWindow", "go to Main", nullptr));
+        AddButton->setText(QCoreApplication::translate("RecipeListWindow", "Add", nullptr));
+        DeleteButton->setText(QCoreApplication::translate("RecipeListWindow", "Delete", nullptr));
     } // retranslateUi
 
 };

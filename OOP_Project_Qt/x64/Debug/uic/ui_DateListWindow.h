@@ -167,12 +167,12 @@ public:
     void retranslateUi(QMainWindow *DateListWindow)
     {
         DateListWindow->setWindowTitle(QCoreApplication::translate("DateListWindow", "DateListWindow", nullptr));
-        label->setText(QCoreApplication::translate("DateListWindow", "\354\235\274\354\240\225 \352\264\200\353\246\254", nullptr));
-        MainButton->setText(QCoreApplication::translate("DateListWindow", "\353\251\224\354\235\270\355\231\224\353\251\264\354\234\274\353\241\234 \353\217\214\354\225\204\352\260\200\352\270\260", nullptr));
-        label_3->setText(QCoreApplication::translate("DateListWindow", "\353\202\240\354\247\234 \352\262\200\354\203\211", nullptr));
+        label->setText(QCoreApplication::translate("DateListWindow", "Schedule Management", nullptr));
+        MainButton->setText(QCoreApplication::translate("DateListWindow", "go to Main", nullptr));
+        label_3->setText(QCoreApplication::translate("DateListWindow", "Searching for Schedule", nullptr));
         label_2->setText(QCoreApplication::translate("DateListWindow", "~", nullptr));
-        AddButton->setText(QCoreApplication::translate("DateListWindow", "\354\266\224\352\260\200", nullptr));
-        DeleteButton->setText(QCoreApplication::translate("DateListWindow", "\354\202\255\354\240\234", nullptr));
+        AddButton->setText(QCoreApplication::translate("DateListWindow", "Add", nullptr));
+        DeleteButton->setText(QCoreApplication::translate("DateListWindow", "Delete", nullptr));
     } // retranslateUi
 
 };

@@ -274,24 +274,24 @@ public:
     void retranslateUi(QMainWindow *DateViewWindow)
     {
         DateViewWindow->setWindowTitle(QCoreApplication::translate("DateViewWindow", "DateView", nullptr));
-        DateName->setText(QCoreApplication::translate("DateViewWindow", "\354\235\274\354\240\225", nullptr));
-        label->setText(QCoreApplication::translate("DateViewWindow", "\353\202\240\354\247\234:", nullptr));
-        label_3->setText(QCoreApplication::translate("DateViewWindow", "\354\230\244\354\240\204 : ", nullptr));
-        morningMeal->setText(QCoreApplication::translate("DateViewWindow", "\354\213\235\354\202\254", nullptr));
-        label_5->setText(QCoreApplication::translate("DateViewWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        numOfMorning->setText(QCoreApplication::translate("DateViewWindow", "0\353\252\205", nullptr));
-        label_6->setText(QCoreApplication::translate("DateViewWindow", "\354\230\244\355\233\204 : ", nullptr));
-        lunch->setText(QCoreApplication::translate("DateViewWindow", "\354\213\235\354\202\254", nullptr));
-        label_7->setText(QCoreApplication::translate("DateViewWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        numOfLunch->setText(QCoreApplication::translate("DateViewWindow", "0\353\252\205", nullptr));
-        label_4->setText(QCoreApplication::translate("DateViewWindow", "\354\240\200\353\205\201 : ", nullptr));
-        dinner->setText(QCoreApplication::translate("DateViewWindow", "\354\213\235\354\202\254", nullptr));
-        label_8->setText(QCoreApplication::translate("DateViewWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        numOfDinner->setText(QCoreApplication::translate("DateViewWindow", "0\353\252\205", nullptr));
-        label_9->setText(QCoreApplication::translate("DateViewWindow", "\354\264\235 \354\236\254\353\243\214 \354\226\221", nullptr));
-        editButton->setText(QCoreApplication::translate("DateViewWindow", "\354\210\230\354\240\225", nullptr));
-        deleteButton->setText(QCoreApplication::translate("DateViewWindow", "\354\202\255\354\240\234", nullptr));
-        escButton->setText(QCoreApplication::translate("DateViewWindow", "\353\213\253\352\270\260", nullptr));
+        DateName->setText(QCoreApplication::translate("DateViewWindow", "Schedule Name", nullptr));
+        label->setText(QCoreApplication::translate("DateViewWindow", "Date:", nullptr));
+        label_3->setText(QCoreApplication::translate("DateViewWindow", "Morning", nullptr));
+        morningMeal->setText(QString());
+        label_5->setText(QCoreApplication::translate("DateViewWindow", "people", nullptr));
+        numOfMorning->setText(QString());
+        label_6->setText(QCoreApplication::translate("DateViewWindow", "Lunch", nullptr));
+        lunch->setText(QString());
+        label_7->setText(QCoreApplication::translate("DateViewWindow", "people", nullptr));
+        numOfLunch->setText(QString());
+        label_4->setText(QCoreApplication::translate("DateViewWindow", "Dinner", nullptr));
+        dinner->setText(QString());
+        label_8->setText(QCoreApplication::translate("DateViewWindow", "people", nullptr));
+        numOfDinner->setText(QString());
+        label_9->setText(QCoreApplication::translate("DateViewWindow", "All ingredient", nullptr));
+        editButton->setText(QCoreApplication::translate("DateViewWindow", "Edit", nullptr));
+        deleteButton->setText(QCoreApplication::translate("DateViewWindow", "Delete", nullptr));
+        escButton->setText(QCoreApplication::translate("DateViewWindow", "Close", nullptr));
     } // retranslateUi
 
 };

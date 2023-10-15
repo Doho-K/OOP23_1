@@ -649,7 +649,37 @@ public:
     list<date> getPlan(int start, int end) {
         return Pl.searchPlan(start, end);
     }
+    string allIngredient(date _date) {
+        vector<string> ingredientName;
+        vector<int> numOfIngredient;
 
+        for (int i = 0; i < 3; i++) {
+            //int numOfPeople = _date.getMeal(i).getNum_people();
+            vector<string> tmp = _date.getMeal(i).getMealIngredient_Name();
+            vector<int> tmpIn = _date.getMeal(i).getMealIngredient_Scale();
+
+            for (int j = 0; j < tmp.size(); j++){
+                bool isExist = false;
+                for (int h = 0; h < ingredientName.size(); h++) {
+                    if (ingredientName.at(h) == tmp.at(j)) {
+                        numOfIngredient.at(h) += tmpIn.at(j);
+                        isExist = true;
+                        break;
+                    }
+                }
+                if (!isExist) {
+                    ingredientName.push_back(tmp.at(j));
+                    numOfIngredient.push_back(tmpIn.at(j));
+                }
+            }
+        }
+
+        string result = "";
+        for (int i = 0; i < ingredientName.size(); i++) {
+            result += (i != 0 ? ", " : "") + ingredientName.at(i) + " : " + std::to_string(numOfIngredient.at(i));
+        }
+        return result;
+    }
 };
 
 #endif

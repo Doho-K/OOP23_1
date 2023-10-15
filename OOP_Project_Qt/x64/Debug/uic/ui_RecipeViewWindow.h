@@ -93,10 +93,10 @@ public:
     void retranslateUi(QMainWindow *RecipeViewWindow)
     {
         RecipeViewWindow->setWindowTitle(QCoreApplication::translate("RecipeViewWindow", "Recipe", nullptr));
-        FoodNameLable->setText(QCoreApplication::translate("RecipeViewWindow", "\354\235\214\354\213\235 \354\235\264\353\246\204", nullptr));
-        EditButton->setText(QCoreApplication::translate("RecipeViewWindow", "\354\210\230\354\240\225", nullptr));
-        DeleteButton->setText(QCoreApplication::translate("RecipeViewWindow", "\354\202\255\354\240\234", nullptr));
-        CloseButton->setText(QCoreApplication::translate("RecipeViewWindow", "\353\213\253\352\270\260", nullptr));
+        FoodNameLable->setText(QCoreApplication::translate("RecipeViewWindow", "Recipe Name", nullptr));
+        EditButton->setText(QCoreApplication::translate("RecipeViewWindow", "Edit", nullptr));
+        DeleteButton->setText(QCoreApplication::translate("RecipeViewWindow", "Delete", nullptr));
+        CloseButton->setText(QCoreApplication::translate("RecipeViewWindow", "Close", nullptr));
     } // retranslateUi
 
 };

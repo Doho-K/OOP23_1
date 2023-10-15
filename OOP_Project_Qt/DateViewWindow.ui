@@ -24,7 +24,7 @@
        </font>
       </property>
       <property name="text">
-       <string>일정</string>
+       <string>Schedule Name</string>
       </property>
      </widget>
     </item>
@@ -35,7 +35,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>날짜:</string>
+           <string>Date:</string>
           </property>
          </widget>
         </item>
@@ -51,7 +51,7 @@
           <item>
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>오전 : </string>
+             <string>Morning</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -61,7 +61,7 @@
           <item>
            <widget class="QLabel" name="morningMeal">
             <property name="text">
-             <string>식사</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -72,7 +72,7 @@
           <item>
            <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>인원수 : </string>
+             <string>people</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -82,7 +82,7 @@
           <item>
            <widget class="QLabel" name="numOfMorning">
             <property name="text">
-             <string>0명</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -97,7 +97,7 @@
           <item>
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>오후 : </string>
+             <string>Lunch</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -107,7 +107,7 @@
           <item>
            <widget class="QLabel" name="lunch">
             <property name="text">
-             <string>식사</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -118,7 +118,7 @@
           <item>
            <widget class="QLabel" name="label_7">
             <property name="text">
-             <string>인원수 : </string>
+             <string>people</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -128,7 +128,7 @@
           <item>
            <widget class="QLabel" name="numOfLunch">
             <property name="text">
-             <string>0명</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -143,7 +143,7 @@
           <item>
            <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>저녁 : </string>
+             <string>Dinner</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -153,7 +153,7 @@
           <item>
            <widget class="QLabel" name="dinner">
             <property name="text">
-             <string>식사</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -164,7 +164,7 @@
           <item>
            <widget class="QLabel" name="label_8">
             <property name="text">
-             <string>인원수 : </string>
+             <string>people</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -174,7 +174,7 @@
           <item>
            <widget class="QLabel" name="numOfDinner">
             <property name="text">
-             <string>0명</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -195,7 +195,7 @@
          </font>
         </property>
         <property name="text">
-         <string>총 재료 양</string>
+         <string>All ingredient</string>
         </property>
         <property name="textFormat">
          <enum>Qt::MarkdownText</enum>
@@ -241,21 +241,21 @@
       <item>
        <widget class="QPushButton" name="editButton">
         <property name="text">
-         <string>수정</string>
+         <string>Edit</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="deleteButton">
         <property name="text">
-         <string>삭제</string>
+         <string>Delete</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="escButton">
         <property name="text">
-         <string>닫기</string>
+         <string>Close</string>
         </property>
        </widget>
       </item>

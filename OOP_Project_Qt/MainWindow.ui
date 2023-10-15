@@ -52,7 +52,7 @@ Kitchen Helper</string>
          </font>
         </property>
         <property name="text">
-         <string>오늘의 추천 메뉴 : __, ___</string>
+         <string>Today's Menu : _____</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -146,7 +146,7 @@ Kitchen Helper</string>
          <enum>QFrame::Box</enum>
         </property>
         <property name="text">
-         <string>날짜</string>
+         <string>Date</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -272,7 +272,7 @@ Kitchen Helper</string>
          <enum>QFrame::Box</enum>
         </property>
         <property name="text">
-         <string>점심</string>
+         <string>Lunch</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -326,7 +326,7 @@ Kitchen Helper</string>
          <enum>QFrame::Box</enum>
         </property>
         <property name="text">
-         <string>아침</string>
+         <string>Morning</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -560,7 +560,7 @@ Kitchen Helper</string>
          <enum>QFrame::Box</enum>
         </property>
         <property name="text">
-         <string>저녁</string>
+         <string>Dinner</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -642,7 +642,7 @@ Kitchen Helper</string>
       <item row="0" column="2">
        <widget class="QLabel" name="dateListLabel">
         <property name="text">
-         <string>-일정-</string>
+         <string>-Schedule-</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -677,25 +677,9 @@ Kitchen Helper</string>
          </font>
         </property>
         <property name="text">
-         <string>레시피 관리</string>
+         <string>Recipe Management</string>
         </property>
        </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Preferred</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>30</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <widget class="QPushButton" name="dateButton">
@@ -705,25 +689,9 @@ Kitchen Helper</string>
          </font>
         </property>
         <property name="text">
-         <string>일정 관리</string>
+         <string>Schedule Management</string>
         </property>
        </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Preferred</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>30</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>

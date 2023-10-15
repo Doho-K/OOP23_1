@@ -22,13 +22,13 @@ void OOP_Project_Qt::openMainWindow() {
     time_t t = std::time(nullptr);
     tm* tt = localtime(&t);
     int n = (tt->tm_year + 1900) * 10000 + (tt->tm_mon + 1) * 100 + tt->tm_mday;
-    main.date->setText(QString::fromStdString(std::to_string(n)));
 
     list<date> dates = greeter.callDateList();
     QLabel* dateLables[7] = { main.date1, main.date2, main.date3, main.date4, main.date5, main.date6, main.date7 };
     QLabel* dateMorningLables[7] = { main.date1Morning, main.date2Morning, main.date3Morning, main.date4Morning, main.date5Morning, main.date6Morning, main.date7Morning };
     QLabel* dateLunchLables[7] = { main.date1Lunch, main.date2Lunch, main.date3Lunch, main.date4Lunch, main.date5Lunch, main.date6Lunch, main.date7Lunch };
     QLabel* dateDinnerLables[7] = { main.date1Dinner, main.date2Dinner, main.date3Dinner, main.date4Dinner, main.date5Dinner, main.date6Dinner, main.date7Dinner };
+    
     list<date>::iterator iter = dates.begin();
     int i = 0;
     for (iter; iter != dates.end(); iter++) {
@@ -49,7 +49,7 @@ void OOP_Project_Qt::openMainWindow() {
     
     try
     {
-        string recom = "이 메뉴는 어떠신가요? - ";
+        string recom = "How about this menu? - ";
         ///*
         for (string t : greeter.randomRecipe(1)) {
             recom += t;
@@ -59,7 +59,7 @@ void OOP_Project_Qt::openMainWindow() {
     }
     catch (const std::exception&)
     {
-        main.recommendLable->setText(QString::fromStdString("레시피를 추가해주세요."));
+        main.recommendLable->setText(QString::fromStdString("-Error-"));
     }    
 
     connect(main.recipeButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
@@ -105,12 +105,12 @@ void OOP_Project_Qt::openRecipeViewWindow(QModelIndex index) {
 
         //recipeView.FoodNameLable->setText(QString::fromStdString(target.getName()));
         recipeView.FoodNameLable->setText(a);
-        recipeView.RecipeTextArea->setText(QString::fromStdString("-재료-\n" + greeter.stringInfo(target.getName()) + "소요시간 : " + std::to_string(target.getCookingTime()) + "\n\n-조리법-\n" + target.getContent()));
+        recipeView.RecipeTextArea->setText(QString::fromStdString("-Ingredient-\n" + greeter.stringInfo(target.getName()) + "\n-Cooking Time : " + std::to_string(target.getCookingTime()) + "\n\n-Recipe-\n" + target.getContent()));
     }
     catch (const std::exception&)
     {
         QMessageBox box;
-        box.setText("오류가 발생했습니다");
+        box.setText("-Error-");
         recipeList.setupUi(this);
     }
 
@@ -181,21 +181,29 @@ void OOP_Project_Qt::setRecipeSearchInfo() {
 
 //recipeViewWindow에서 수정 버튼을 클릭 시
 void OOP_Project_Qt::openRecipeInputWindowForEdit() {
-    Recipe recipe = greeter.searchExactRecipe(recipeView.FoodNameLable->text().toStdString());
-    selectString = recipe.getName();
-    recipeInput.setupUi(this);
+    try
+    {
+        Recipe recipe = greeter.searchExactRecipe(recipeView.FoodNameLable->text().toStdString());
+        selectString = recipe.getName();
+        recipeInput.setupUi(this);
 
-    recipeInput.lineEdit->setText(QString::fromStdString(recipe.getName()));
-    recipeInput.textEdit->setText(QString::fromStdString(recipe.getContent()));
+        recipeInput.lineEdit->setText(QString::fromStdString(recipe.getName()));
+        recipeInput.textEdit->setText(QString::fromStdString(recipe.getContent()));
 
-    QLineEdit *nameOfIngredients[5] = { recipeInput.nameOfIngredient1, recipeInput.nameOfIngredient2, recipeInput.nameOfIngredient3, recipeInput.nameOfIngredient4, recipeInput.nameOfIngredient5 };
-    QSpinBox *numOfIngredients[5] = { recipeInput.numOfIngredient1, recipeInput.numOfIngredient2, recipeInput.numOfIngredient3, recipeInput.numOfIngredient4, recipeInput.numOfIngredient5 };
-    
-    for (int i = 0; i < recipe.get_Ingredient_size(); i++) {
-        nameOfIngredients[i]->setText(QString::fromStdString(recipe.getIngredientsName()[i]));
-        numOfIngredients[i]->setValue(recipe.getIngredientsScale()[i]);
+        QLineEdit* nameOfIngredients[5] = { recipeInput.nameOfIngredient1, recipeInput.nameOfIngredient2, recipeInput.nameOfIngredient3, recipeInput.nameOfIngredient4, recipeInput.nameOfIngredient5 };
+        QSpinBox* numOfIngredients[5] = { recipeInput.numOfIngredient1, recipeInput.numOfIngredient2, recipeInput.numOfIngredient3, recipeInput.numOfIngredient4, recipeInput.numOfIngredient5 };
+
+        recipeInput.cookTime->setValue(recipe.getCookingTime());
+
+        for (int i = 0; i < recipe.get_Ingredient_size() && i < 5; i++) {
+            nameOfIngredients[i]->setText(QString::fromStdString(recipe.getIngredientsName().at(i)));
+            numOfIngredients[i]->setValue(recipe.getIngredientsScale().at(i));
+        }
     }
-    
+    catch (const std::exception&)
+    {
+        QMessageBox::information(this, "Error", "Unknown Error occurred");
+    }
 
     connect(recipeInput.saveButton, SIGNAL(clicked()), this, SLOT(InputRecipeInfo()));
     connect(recipeInput.escButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
@@ -283,13 +291,7 @@ void OOP_Project_Qt::openDateViewWindow() {
         dateView.dinner->setText(QString::fromStdString(target.getMeal(2).getMeal_Name()));
         dateView.numOfDinner->setText(QString::fromStdString(std::to_string(target.getMeal(2).getNum_people())));
 
-        string tmp = "-재료-\n";
-        for (int i = 0; i < 3; i++) {
-            if (target.getMeal(i).getMeal_Name() != "") {
-                tmp += greeter.stringInfo(target.getMeal(i).getMeal_Name());
-            }
-        }
-        dateView.ingredients->setText(QString::fromStdString(tmp));
+        dateView.ingredients->setText(QString::fromStdString(greeter.allIngredient(target)));
     }
     catch (const std::exception& e)
     {

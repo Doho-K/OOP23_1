@@ -109,6 +109,7 @@ public:
 
         numOfIngredient1 = new QSpinBox(centralwidget);
         numOfIngredient1->setObjectName("numOfIngredient1");
+        numOfIngredient1->setMaximum(500);
 
         horizontalLayout_7->addWidget(numOfIngredient1);
 
@@ -129,6 +130,7 @@ public:
 
         numOfIngredient2 = new QSpinBox(centralwidget);
         numOfIngredient2->setObjectName("numOfIngredient2");
+        numOfIngredient2->setMaximum(500);
 
         horizontalLayout_6->addWidget(numOfIngredient2);
 
@@ -149,6 +151,7 @@ public:
 
         numOfIngredient3 = new QSpinBox(centralwidget);
         numOfIngredient3->setObjectName("numOfIngredient3");
+        numOfIngredient3->setMaximum(500);
 
         horizontalLayout_5->addWidget(numOfIngredient3);
 
@@ -169,6 +172,7 @@ public:
 
         numOfIngredient4 = new QSpinBox(centralwidget);
         numOfIngredient4->setObjectName("numOfIngredient4");
+        numOfIngredient4->setMaximum(500);
 
         horizontalLayout_3->addWidget(numOfIngredient4);
 
@@ -189,6 +193,7 @@ public:
 
         numOfIngredient5 = new QSpinBox(centralwidget);
         numOfIngredient5->setObjectName("numOfIngredient5");
+        numOfIngredient5->setMaximum(500);
 
         horizontalLayout_4->addWidget(numOfIngredient5);
 
@@ -254,14 +259,14 @@ public:
     void retranslateUi(QMainWindow *RecipeInputWindow)
     {
         RecipeInputWindow->setWindowTitle(QCoreApplication::translate("RecipeInputWindow", "RecipeInput", nullptr));
-        label_5->setText(QCoreApplication::translate("RecipeInputWindow", "\354\236\254\353\243\214\353\252\205 : ", nullptr));
-        label_4->setText(QCoreApplication::translate("RecipeInputWindow", "\354\236\254\353\243\214\353\252\205 : ", nullptr));
-        label_3->setText(QCoreApplication::translate("RecipeInputWindow", "\354\236\254\353\243\214\353\252\205 : ", nullptr));
-        label_2->setText(QCoreApplication::translate("RecipeInputWindow", "\354\236\254\353\243\214\353\252\205 : ", nullptr));
-        label->setText(QCoreApplication::translate("RecipeInputWindow", "\354\236\254\353\243\214\353\252\205 : ", nullptr));
-        cookTimeLable->setText(QCoreApplication::translate("RecipeInputWindow", "\354\241\260\353\246\254 \354\213\234\352\260\204", nullptr));
-        saveButton->setText(QCoreApplication::translate("RecipeInputWindow", "\354\240\200\354\236\245", nullptr));
-        escButton->setText(QCoreApplication::translate("RecipeInputWindow", "\354\267\250\354\206\214", nullptr));
+        label_5->setText(QCoreApplication::translate("RecipeInputWindow", "Ingredient : ", nullptr));
+        label_4->setText(QCoreApplication::translate("RecipeInputWindow", "Ingredient : ", nullptr));
+        label_3->setText(QCoreApplication::translate("RecipeInputWindow", "Ingredient : ", nullptr));
+        label_2->setText(QCoreApplication::translate("RecipeInputWindow", "Ingredient : ", nullptr));
+        label->setText(QCoreApplication::translate("RecipeInputWindow", "Ingredient : ", nullptr));
+        cookTimeLable->setText(QCoreApplication::translate("RecipeInputWindow", "Cooking Time", nullptr));
+        saveButton->setText(QCoreApplication::translate("RecipeInputWindow", "Save", nullptr));
+        escButton->setText(QCoreApplication::translate("RecipeInputWindow", "Cancel", nullptr));
     } // retranslateUi
 
 };

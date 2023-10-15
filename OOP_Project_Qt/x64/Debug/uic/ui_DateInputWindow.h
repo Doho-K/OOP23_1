@@ -278,17 +278,17 @@ public:
     void retranslateUi(QMainWindow *DateInputWindow)
     {
         DateInputWindow->setWindowTitle(QCoreApplication::translate("DateInputWindow", "MainWindow", nullptr));
-        label_2->setText(QCoreApplication::translate("DateInputWindow", "\354\235\274\354\240\225 \354\236\205\353\240\245", nullptr));
-        label_9->setText(QCoreApplication::translate("DateInputWindow", "\354\235\274\354\240\225\353\252\205 : ", nullptr));
-        label->setText(QCoreApplication::translate("DateInputWindow", "\353\202\240\354\247\234:", nullptr));
-        label_3->setText(QCoreApplication::translate("DateInputWindow", "\354\230\244\354\240\204", nullptr));
-        label_5->setText(QCoreApplication::translate("DateInputWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        label_6->setText(QCoreApplication::translate("DateInputWindow", "\354\230\244\355\233\204", nullptr));
-        label_7->setText(QCoreApplication::translate("DateInputWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        label_4->setText(QCoreApplication::translate("DateInputWindow", "\354\240\200\353\205\201", nullptr));
-        label_8->setText(QCoreApplication::translate("DateInputWindow", "\354\235\270\354\233\220\354\210\230 : ", nullptr));
-        saveButton->setText(QCoreApplication::translate("DateInputWindow", "\354\240\200\354\236\245", nullptr));
-        escButton->setText(QCoreApplication::translate("DateInputWindow", "\354\267\250\354\206\214", nullptr));
+        label_2->setText(QCoreApplication::translate("DateInputWindow", "Enter A Schedule", nullptr));
+        label_9->setText(QCoreApplication::translate("DateInputWindow", "Schedule name : ", nullptr));
+        label->setText(QCoreApplication::translate("DateInputWindow", "Date:", nullptr));
+        label_3->setText(QCoreApplication::translate("DateInputWindow", "Morning", nullptr));
+        label_5->setText(QCoreApplication::translate("DateInputWindow", "people : ", nullptr));
+        label_6->setText(QCoreApplication::translate("DateInputWindow", "Lunch", nullptr));
+        label_7->setText(QCoreApplication::translate("DateInputWindow", "people : ", nullptr));
+        label_4->setText(QCoreApplication::translate("DateInputWindow", "Dinner", nullptr));
+        label_8->setText(QCoreApplication::translate("DateInputWindow", "people : ", nullptr));
+        saveButton->setText(QCoreApplication::translate("DateInputWindow", "save", nullptr));
+        escButton->setText(QCoreApplication::translate("DateInputWindow", "Cancle", nullptr));
     } // retranslateUi
 
 };

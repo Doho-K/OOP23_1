@@ -26,7 +26,7 @@
          </font>
         </property>
         <property name="text">
-         <string>일정 관리</string>
+         <string>Schedule Management</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -49,7 +49,7 @@
       <item>
        <widget class="QPushButton" name="MainButton">
         <property name="text">
-         <string>메인화면으로 돌아가기</string>
+         <string>go to Main</string>
         </property>
        </widget>
       </item>
@@ -65,7 +65,7 @@
          </font>
         </property>
         <property name="text">
-         <string>날짜 검색</string>
+         <string>Searching for Schedule</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -141,14 +141,14 @@
       <item>
        <widget class="QPushButton" name="AddButton">
         <property name="text">
-         <string>추가</string>
+         <string>Add</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="DeleteButton">
         <property name="text">
-         <string>삭제</string>
+         <string>Delete</string>
         </property>
        </widget>
       </item>

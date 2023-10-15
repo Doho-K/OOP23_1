@@ -27,7 +27,7 @@
        </font>
       </property>
       <property name="text">
-       <string>음식 이름</string>
+       <string>Recipe Name</string>
       </property>
      </widget>
     </item>
@@ -43,21 +43,21 @@
       <item>
        <widget class="QPushButton" name="EditButton">
         <property name="text">
-         <string>수정</string>
+         <string>Edit</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="DeleteButton">
         <property name="text">
-         <string>삭제</string>
+         <string>Delete</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="CloseButton">
         <property name="text">
-         <string>닫기</string>
+         <string>Close</string>
         </property>
        </widget>
       </item>

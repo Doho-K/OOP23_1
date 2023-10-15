@@ -68,9 +68,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *recipeButton;
-    QSpacerItem *horizontalSpacer;
     QPushButton *dateButton;
-    QSpacerItem *horizontalSpacer_3;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -398,19 +396,11 @@ public:
 
         horizontalLayout->addWidget(recipeButton);
 
-        horizontalSpacer = new QSpacerItem(30, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
         dateButton = new QPushButton(centralWidget);
         dateButton->setObjectName("dateButton");
         dateButton->setFont(font1);
 
         horizontalLayout->addWidget(dateButton);
-
-        horizontalSpacer_3 = new QSpacerItem(30, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_3);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -430,22 +420,22 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "OOP_Project", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Iiteractive Iintelligent\n"
 "Kitchen Helper", nullptr));
-        recommendLable->setText(QCoreApplication::translate("MainWindow", "\354\230\244\353\212\230\354\235\230 \354\266\224\354\262\234 \353\251\224\353\211\264 : __, ___", nullptr));
+        recommendLable->setText(QCoreApplication::translate("MainWindow", "Today's Menu : _____", nullptr));
         date1Dinner->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date4Lunch->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date2->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date2Lunch->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
-        date->setText(QCoreApplication::translate("MainWindow", "\353\202\240\354\247\234", nullptr));
+        date->setText(QCoreApplication::translate("MainWindow", "Date", nullptr));
         date4Morning->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date3->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date5->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date6Lunch->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date2Dinner->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date1Lunch->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
-        dinnerLabel->setText(QCoreApplication::translate("MainWindow", "\354\240\220\354\213\254", nullptr));
+        dinnerLabel->setText(QCoreApplication::translate("MainWindow", "Lunch", nullptr));
         date6Morning->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date6->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
-        morningLable->setText(QCoreApplication::translate("MainWindow", "\354\225\204\354\271\250", nullptr));
+        morningLable->setText(QCoreApplication::translate("MainWindow", "Morning", nullptr));
         date5Morning->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date1->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date6Dinner->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
@@ -458,14 +448,14 @@ public:
         date7->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date4Dinner->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date4->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
-        lunchLabel->setText(QCoreApplication::translate("MainWindow", "\354\240\200\353\205\201", nullptr));
+        lunchLabel->setText(QCoreApplication::translate("MainWindow", "Dinner", nullptr));
         date5Dinner->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date2Morning->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date3Lunch->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         date7Morning->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
-        dateListLabel->setText(QCoreApplication::translate("MainWindow", "-\354\235\274\354\240\225-", nullptr));
-        recipeButton->setText(QCoreApplication::translate("MainWindow", "\353\240\210\354\213\234\355\224\274 \352\264\200\353\246\254", nullptr));
-        dateButton->setText(QCoreApplication::translate("MainWindow", "\354\235\274\354\240\225 \352\264\200\353\246\254", nullptr));
+        dateListLabel->setText(QCoreApplication::translate("MainWindow", "-Schedule-", nullptr));
+        recipeButton->setText(QCoreApplication::translate("MainWindow", "Recipe Management", nullptr));
+        dateButton->setText(QCoreApplication::translate("MainWindow", "Schedule Management", nullptr));
     } // retranslateUi
 
 };

@@ -52,7 +52,7 @@
         <item>
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>재료명 : </string>
+           <string>Ingredient : </string>
           </property>
          </widget>
         </item>
@@ -60,7 +60,11 @@
          <widget class="QLineEdit" name="nameOfIngredient1"/>
         </item>
         <item>
-         <widget class="QSpinBox" name="numOfIngredient1"/>
+         <widget class="QSpinBox" name="numOfIngredient1">
+          <property name="maximum">
+           <number>500</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -69,7 +73,7 @@
         <item>
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>재료명 : </string>
+           <string>Ingredient : </string>
           </property>
          </widget>
         </item>
@@ -77,7 +81,11 @@
          <widget class="QLineEdit" name="nameOfIngredient2"/>
         </item>
         <item>
-         <widget class="QSpinBox" name="numOfIngredient2"/>
+         <widget class="QSpinBox" name="numOfIngredient2">
+          <property name="maximum">
+           <number>500</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -86,7 +94,7 @@
         <item>
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>재료명 : </string>
+           <string>Ingredient : </string>
           </property>
          </widget>
         </item>
@@ -94,7 +102,11 @@
          <widget class="QLineEdit" name="nameOfIngredient3"/>
         </item>
         <item>
-         <widget class="QSpinBox" name="numOfIngredient3"/>
+         <widget class="QSpinBox" name="numOfIngredient3">
+          <property name="maximum">
+           <number>500</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -103,7 +115,7 @@
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>재료명 : </string>
+           <string>Ingredient : </string>
           </property>
          </widget>
         </item>
@@ -111,7 +123,11 @@
          <widget class="QLineEdit" name="nameOfIngredient4"/>
         </item>
         <item>
-         <widget class="QSpinBox" name="numOfIngredient4"/>
+         <widget class="QSpinBox" name="numOfIngredient4">
+          <property name="maximum">
+           <number>500</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -120,7 +136,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>재료명 : </string>
+           <string>Ingredient : </string>
           </property>
          </widget>
         </item>
@@ -128,7 +144,11 @@
          <widget class="QLineEdit" name="nameOfIngredient5"/>
         </item>
         <item>
-         <widget class="QSpinBox" name="numOfIngredient5"/>
+         <widget class="QSpinBox" name="numOfIngredient5">
+          <property name="maximum">
+           <number>500</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -150,7 +170,7 @@
         <item>
          <widget class="QLabel" name="cookTimeLable">
           <property name="text">
-           <string>조리 시간</string>
+           <string>Cooking Time</string>
           </property>
          </widget>
         </item>
@@ -182,14 +202,14 @@
       <item>
        <widget class="QPushButton" name="saveButton">
         <property name="text">
-         <string>저장</string>
+         <string>Save</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="escButton">
         <property name="text">
-         <string>취소</string>
+         <string>Cancel</string>
         </property>
        </widget>
       </item>
