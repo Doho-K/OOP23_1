@@ -64,6 +64,8 @@ void OOP_Project_Qt::openMainWindow() {
     connect(main.dateButton, SIGNAL(clicked()), this, SLOT(openDateListWindow()));
 }
 
+//*****************************************************************************************************************************************************//
+
 //레시피 관리 창 구현
 void OOP_Project_Qt::openRecipeListWindow() {
     selectString = "";
@@ -117,7 +119,13 @@ void OOP_Project_Qt::openRecipeViewWindow(QModelIndex index) {
 
 //레시피 정보 적용
 void OOP_Project_Qt::InputRecipeInfo() {
-    if (recipeInput.lineEdit->text() != "") {
+    string st = recipeInput.lineEdit->text().toStdString();
+    if (selectString == "" && greeter.searchExactRecipe(st).getName()  != "") {
+        QMessageBox::information(this, "Please", "Same name recipe is exist...");
+        return;
+    }
+
+    if (st != "") {
         vector<string> ingredient;
         vector<int> numOfIngredient;
 
@@ -155,6 +163,9 @@ void OOP_Project_Qt::InputRecipeInfo() {
         greeter.saveEverything();
         selectString = "";
         openRecipeListWindow();
+    }
+    else {
+        QMessageBox::information(this, "Please", "Please, input recipe name and cooking time...");
     }
 }
 
@@ -211,8 +222,6 @@ void OOP_Project_Qt::openDateListWindow() {
     selectString = "";
     dateList.setupUi(this);
 
-    setDateSearchInfo();
-
     connect(dateList.MainButton, SIGNAL(clicked()), this, SLOT(openMainWindow()));
 
     time_t t = std::time(nullptr);
@@ -221,9 +230,10 @@ void OOP_Project_Qt::openDateListWindow() {
     dateList.StartDate->setDate(QDate(tt->tm_year + 1900, tt->tm_mon + 1, tt->tm_mday));
     dateList.EndDate->setDate(QDate(tt->tm_year + 1900 + (tt->tm_mon + 4 > 11 ? 1 : 0), (tt->tm_mon + 4) % 12, tt->tm_mday));
 
+    setDateSearchInfo();
+
     connect(dateList.StartDate, SIGNAL(dateTimeChanged(const QDateTime)), this, SLOT(setDateSearchInfo()));
     connect(dateList.EndDate, SIGNAL(dateTimeChanged(const QDateTime)), this, SLOT(setDateSearchInfo()));
-    connect(dateList.SearchText, SIGNAL(textChanged(const QString)), this, SLOT(setDateSearchInfo()));
 
     connect(dateList.listWidget, SIGNAL(doubleClicked(const QModelIndex)), this, SLOT(openDateViewWindow()));
 
@@ -294,29 +304,45 @@ void OOP_Project_Qt::openDateViewWindow() {
 
 //일정 정보 적용
 void OOP_Project_Qt::InputDateInfo() {
-    if (dateInput.dateName->text() == "") {
+    try
+    {
+        int dateNum = dateInput.dateTime->date().year() * 10000 + dateInput.dateTime->date().month() * 100 + dateInput.dateTime->date().day();
+        
+        if (selectString == "" && greeter.callDate(dateNum).getDateTime() != 0) {
+            QMessageBox::information(this, "Please", "In this date, schedule is exist...");
+            return;
+        }
+        string st = dateInput.dateName->text().toStdString();
+        st.erase(remove(st.begin(), st.end(), ' '), st.end());
+        if (st == "") {
+            QMessageBox::information(this, "Please", "Please, input Schedule Name...");
+            return;
+        }
+
+        vector<string> mealInfo;
+        mealInfo.push_back(dateInput.morningMeal->currentText().toStdString());
+        mealInfo.push_back(dateInput.lunchMeal->currentText().toStdString());
+        mealInfo.push_back(dateInput.dinnerMeal->currentText().toStdString());
+
+        vector<int> numOfMeal;
+        numOfMeal.push_back(dateInput.morningNumOfHuman->value());
+        numOfMeal.push_back(dateInput.lunchNumOfHuman->value());
+        numOfMeal.push_back(dateInput.dinnerNumOfHuman->value());
+
+        if (selectString != "") {
+            greeter.editPlan(stoi(selectString), dateNum, dateInput.dateName->text().toStdString(), mealInfo, numOfMeal);
+        }
+        else {
+            greeter.addPlan(dateNum, dateInput.dateName->text().toStdString(), mealInfo, numOfMeal);
+        }
+        greeter.saveEverything();
+        openDateListWindow();
+    }
+    catch (const std::exception&)
+    {
+        QMessageBox::information(this, "Please", "In this date, schedule is exist...");
         return;
     }
-
-    int dateNum = dateInput.dateTime->date().year() * 10000 + dateInput.dateTime->date().month() * 100 + dateInput.dateTime->date().day();
-    vector<string> mealInfo;
-    mealInfo.push_back(dateInput.morningMeal->currentText().toStdString());
-    mealInfo.push_back(dateInput.lunchMeal->currentText().toStdString());
-    mealInfo.push_back(dateInput.dinnerMeal->currentText().toStdString());
-
-    vector<int> numOfMeal;
-    numOfMeal.push_back(dateInput.morningNumOfHuman->value());
-    numOfMeal.push_back(dateInput.lunchNumOfHuman->value());
-    numOfMeal.push_back(dateInput.dinnerNumOfHuman->value());
-
-    if (selectString != "") {
-        greeter.editPlan(stoi(selectString), dateNum, dateInput.dateName->text().toStdString(), mealInfo, numOfMeal);
-    }
-    else {
-        greeter.addPlan(dateNum, dateInput.dateName->text().toStdString(), mealInfo, numOfMeal);
-    }
-    greeter.saveEverything();
-    openDateListWindow();
 }
 
 void OOP_Project_Qt::deleteDateInfo() {
@@ -367,7 +393,11 @@ void OOP_Project_Qt::deleteThisDateInfo() {
 }
 
 void OOP_Project_Qt::setDateSearchInfo() {
-    for (date _date : greeter.callDateList()) {
+    dateList.listWidget->clear();
+    int start = dateList.StartDate->date().year() * 10000 + dateList.StartDate->date().month() * 100 + dateList.StartDate->date().day();
+    int end = dateList.EndDate->date().year() * 10000 + dateList.EndDate->date().month() * 100 + dateList.EndDate->date().day();
+
+    for (date _date : greeter.getPlan(start, end)) {
         dateList.listWidget->addItem(QString::fromStdString(std::to_string(_date.getDateTime()) + ":" + _date.getDateName()));
     }
 }

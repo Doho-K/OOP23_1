@@ -95,6 +95,7 @@ public:
 
         dateEdit = new QDateEdit(centralwidget);
         dateEdit->setObjectName("dateEdit");
+        dateEdit->setReadOnly(true);
 
         horizontalLayout->addWidget(dateEdit);
 

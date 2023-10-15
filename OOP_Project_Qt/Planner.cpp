@@ -111,6 +111,8 @@ date Planner::searchPlan(int dateTime) { //Search plan and return actual date
             return *dateListIt; //Return Node
         }
     }
+    date a("", 0);
+    return a;
 }
 
 date Planner::searchPlan(string dateName) { //Overload searchPlan
@@ -122,9 +124,11 @@ date Planner::searchPlan(string dateName) { //Overload searchPlan
             return *dateListIt; //반복자가 가리키는 노드를 리턴함.
         }
     }
+    date a("", 0);
+    return a;
 }
 
-list<date> Planner::searchPlan(int startDateTime, int endDateTime) { //특정 기간 내에 속하는 모든 dateList 반환
+list<date> Planner::searchPlanRange(int startDateTime, int endDateTime) { //특정 기간 내에 속하는 모든 dateList 반환
     list<date> returnDateList;
     date tempDate; //임시 저장 변수
     list<date>::iterator dateListIt; //반복자(iterator) 선언, 리스트의 특정 노드를 가리킴

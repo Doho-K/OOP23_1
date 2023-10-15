@@ -14,7 +14,6 @@
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
@@ -42,7 +41,6 @@ public:
     QLabel *label_2;
     QDateEdit *EndDate;
     QSpacerItem *horizontalSpacer_5;
-    QLineEdit *SearchText;
     QListWidget *listWidget;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_2;
@@ -124,11 +122,6 @@ public:
 
 
         verticalLayout->addLayout(verticalLayout_2);
-
-        SearchText = new QLineEdit(centralwidget);
-        SearchText->setObjectName("SearchText");
-
-        verticalLayout->addWidget(SearchText);
 
         listWidget = new QListWidget(centralwidget);
         listWidget->setObjectName("listWidget");

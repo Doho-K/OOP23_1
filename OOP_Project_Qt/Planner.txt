@@ -1,9 +1,9 @@
-Party
-20231015
-Spaghetti Carbonara
-1
-Spaghetti Carbonara
-2
+School anniversary
+20231017
+Chocolate Chip Cookies
+40
 Chicken Alfredo Pasta
-1
+80
+
+0
 eof

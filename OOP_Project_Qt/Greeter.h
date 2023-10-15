@@ -121,6 +121,7 @@ public:
     Meal getMeal(int arrayNum); //아침or 점심or 저녁 반환
     string getmealName(int arrayNum);// Return Name of meal: Require variable indicate meal number
 };
+
 class Planner {
 private:
     list<date> dateList; //Save date as Linked List
@@ -139,7 +140,7 @@ public:
 
     date searchPlan(string dateName); //Overload searchPlan
 
-    list<date> searchPlan(int startDateTime, int endDateTime); //특정 기간 내에 속하는 모든 dateList 반환
+    list<date> searchPlanRange(int startDateTime, int endDateTime); //특정 기간 내에 속하는 모든 dateList 반환
     int dateOrder(int dateTime); //datetime에 해당하는 date가 몇 번째 리스트에 있는지 반환.
     void addPlan(date newDate); //Add date to planner
 

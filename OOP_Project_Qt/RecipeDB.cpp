@@ -83,7 +83,7 @@ void RecipeDB::search_list(string inputstr) {
             j++;
         }
     }
-    cout << "검색할 레시피(번호): ";
+    cout << "검색할 레시피(번호) : ";
     int list_num; cin >> list_num;
     search_Content(list_num, newlist);
 
@@ -117,6 +117,7 @@ string RecipeDB::search_recipeName(string inputstr) {
 
 Recipe RecipeDB::search_recipe(string inputstr) {
     Recipe newRecipe;
+    newRecipe.setName("");
     for (int i = 0; i < R_list.size(); i++) {
         if (R_list[i].getName() == inputstr) { //input으로 받은 문자열 = recipe 문자열 (비교)
             newRecipe = R_list[i]; // newRecipe에 현재 Recipe instance 저장

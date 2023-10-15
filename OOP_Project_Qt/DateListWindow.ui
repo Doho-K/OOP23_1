@@ -118,9 +118,6 @@
      </layout>
     </item>
     <item>
-     <widget class="QLineEdit" name="SearchText"/>
-    </item>
-    <item>
      <widget class="QListWidget" name="listWidget"/>
     </item>
     <item>

@@ -288,7 +288,7 @@ public:
         label_4->setText(QCoreApplication::translate("DateInputWindow", "Dinner", nullptr));
         label_8->setText(QCoreApplication::translate("DateInputWindow", "people : ", nullptr));
         saveButton->setText(QCoreApplication::translate("DateInputWindow", "save", nullptr));
-        escButton->setText(QCoreApplication::translate("DateInputWindow", "Cancle", nullptr));
+        escButton->setText(QCoreApplication::translate("DateInputWindow", "Cancel", nullptr));
     } // retranslateUi
 
 };

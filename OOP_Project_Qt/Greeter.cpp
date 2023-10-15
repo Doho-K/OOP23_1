@@ -118,7 +118,7 @@ date Greeter::getPlan(string name) {
     return plan;
 }
 list<date> Greeter::getPlan(int start, int end) {
-    return Pl.searchPlan(start, end);
+    return Pl.searchPlanRange(start, end);
 }
 string Greeter::allIngredient(date _date) {
     vector<string> ingredientName;

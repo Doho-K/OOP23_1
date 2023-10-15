@@ -40,7 +40,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QDateEdit" name="dateEdit"/>
+         <widget class="QDateEdit" name="dateEdit">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
