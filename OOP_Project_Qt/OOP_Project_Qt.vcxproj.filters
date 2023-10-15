@@ -40,9 +40,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleUIcpp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="RecipeListWindow.ui">
@@ -66,9 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="greeter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

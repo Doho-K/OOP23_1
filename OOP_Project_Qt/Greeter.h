@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 #ifndef Planner_H
 #define Planner_H
 #include <iostream>
@@ -7,161 +7,9 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <random>
 
 using namespace std;
-
-
-class date {
-private:
-    string dateName; //Name of the date
-    int dateTime; //actual date
-    //meal mealArray[3]; //æ∆ƒß[0],¡°Ω…[1],¿˙≥·[2]
-    string mealNameArray[3];//String Array that saves Meal: Breakfast[0],Lunch[1],Dinner[2]
-public:
-    date(string dateName, int dateTime) { //Initialization Function: Requires Name of the date and actual time
-        this->dateName = dateName;
-        this->dateTime = dateTime;
-    }
-    //void addMeal(int mealNum, meal newMeal) { //æ∆ƒß[0], ¡°Ω…[1], ¿˙≥·[2]ø° ΩƒªÁ √ﬂ∞°
-    //	mealArray[mealNum] = newMeal;
-    //}
-    void setMealName(int mealNum, string newMealName) {//Set Name of the Meal in Array
-        mealNameArray[mealNum] = newMealName;
-    }
-    string getDateName() { //Return dateName as String
-        return dateName;
-    }
-    int getDateTime() { //Return date Time as Int
-        return dateTime;
-    }
-    //meal getMeal(int arrayNum) { //æ∆ƒßor ¡°Ω…or ¿˙≥· π›»Ø
-    //	return mealArray[arrayNum];
-    //}
-    string getmealName(int arrayNum) {// Return Name of meal: Require variable indicate meal number
-        return mealNameArray[arrayNum];
-    }
-};
-
-class Planner {
-private:
-    list<date> dateList; //Save date as Linked List
-
-
-public:
-    void savePlan() { //Save plan in Txt File
-        fstream savePlanFile;
-        list<date>::iterator dateListIt; //iterator decleration
-        savePlanFile.open("Planner.txt", ios::trunc); //Delete original file and save new(Because of repitition)
-        if (savePlanFile.is_open()) { //When file is opened
-            for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) { //Loop until end of list
-                //Read dateName, dateTime, Menu
-                savePlanFile << dateListIt->getDateName() << "\n"; //Save Name
-                savePlanFile << dateListIt->getDateTime() << "\n"; //Save date(yyyymmdd)
-                savePlanFile << dateListIt->getmealName(0) << "\n"; //Breakfast
-                savePlanFile << dateListIt->getmealName(1) << "\n"; //Lunch
-                savePlanFile << dateListIt->getmealName(2) << "\n"; //Dinner
-            }
-        }
-        else {
-            cout << "Filestream Error";
-        }
-        sortPlan();
-        savePlanFile.close();
-    }
-
-    void loadPlan() { //Load Plan from Txt File
-        fstream loadPlanFile;
-
-        string newDateName; //String variable for save new dateName
-        int newDateTime; //Int variable for save new DateTime
-        string newMealName[3]; //String array for save new meals
-        loadPlanFile.open("Planner.txt");//Read Planner.txt
-
-        if (loadPlanFile.is_open()) { //When file is opened
-            while (!loadPlanFile.eof()) { //Until end of file
-                loadPlanFile >> newDateName;
-                loadPlanFile >> newDateTime;
-                loadPlanFile >> newMealName[0];
-                loadPlanFile >> newMealName[1];
-                loadPlanFile >> newMealName[2];
-
-                //Make new date object and push to dateList
-                date newDate(newDateName, newDateTime);
-                newDate.setMealName(1, newMealName[0]);
-                newDate.setMealName(1, newMealName[1]);
-                newDate.setMealName(1, newMealName[2]);
-
-                this->dateList.push_back(newDate);
-            }
-        }
-        else {
-            cout << "Filestream Error";
-        }
-        loadPlanFile.close();
-    }
-
-
-    void reviewPlan() { //Show whole Plan
-        list<date>::iterator dateListIt; //Iterator declare
-        //this->dateList.sort(); //Sorting plan
-        //Print everything looping whole list
-        for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
-            cout << "Plan Name: " << dateListIt->getDateName() << "\n";
-            cout << "Plan Date: " << dateListIt->getDateTime() << "\n";
-            cout << "breakfast: " << dateListIt->getmealName(0) << "\n";
-            cout << "breakfast: " << dateListIt->getmealName(1) << "\n";
-            cout << "breakfast: " << dateListIt->getmealName(2) << "\n";
-        }
-    }
-
-    list<date> getPlan() {
-        return dateList;
-    }
-
-    date searchPlan(int dateTime) { //Search plan and return actual date
-        list<date>::iterator dateListIt; //Declare iterator, indicate node in list
-
-        //Search node for certain date(dateTime)
-        for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
-            if (dateTime == dateListIt->getDateTime()) { //When node is matched
-                return *dateListIt; //Return Node
-            }
-        }
-    }
-
-    void sortPlan() {
-        //this->dateList.sort();
-    }
-
-    date searchPlan(string dateName) { //Overload searchPlan
-        list<date>::iterator dateListIt; //π›∫π¿⁄(iterator) º±æ, ∏ÆΩ∫∆Æ¿« ∆Ø¡§ ≥ÎµÂ∏¶ ∞°∏Æ≈¥
-
-        //dateList º¯»∏(begin->end)«œ∏Á ∆Ø¡§ ¿Ã∏ß¿« ≥ÎµÂ(date)∏¶ ∞Àªˆ«‘
-        for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
-            if (dateName == dateListIt->getDateName()) { //∞Àªˆ«œ∑¡¥¬ ∞Õ∞˙ ≥ÎµÂ∞° ¿œƒ°«—¥Ÿ∏È
-                return *dateListIt; //π›∫π¿⁄∞° ∞°∏Æ≈∞¥¬ ≥ÎµÂ∏¶ ∏Æ≈œ«‘.
-            }
-        }
-    }
-
-
-    void addPlan(date newDate) { //Add date to planner
-        this->dateList.push_back(newDate);
-        sortPlan();
-    }
-
-    void deletePlan(int dateNum) { //Delete dateNum's date
-        list<date>::iterator dateListIt = this->dateList.begin();
-        for (int i = 0; i < dateNum; i++) {
-            dateListIt++;
-        }
-        this->dateList.erase(dateListIt);
-    }
-    void editPlan(int editDateNum, date editDate) { //planner ºˆ¡§, editDateNum: ºˆ¡§«“ ∞¥√ºindex
-        deletePlan(editDateNum);
-        addPlan(editDate);
-    }
-};
 
 class Recipe
 {
@@ -171,7 +19,6 @@ private:
     vector<string> Ingredients_Name;
     vector<int> Ingredients_Scale;
     int CookingTime;
-
 public:
     Recipe() {}
     string getName() {
@@ -189,7 +36,7 @@ public:
     vector<int> getIngredientsScale() {
         return Ingredients_Scale;
     }
-    
+
     int getCookingTime() {
         return CookingTime;
     }
@@ -226,14 +73,14 @@ public:
     void showIngredient_list() {
         for (int i = 0; i < Ingredients_Name.size(); i++) {
             cout << i + 1 << ". " << Ingredients_Name[i] << "\n";
-        } // ingredient vector¿« ∏Ò∑œ ∏µŒ √‚∑¬
+        } // ingredient vectorÏùò Î™©Î°ù Î™®Îëê Ï∂úÎ†•
     }
 
     void showIngr_Name_scale(string input_name) {
         for (int i = 0; i < Ingredients_Name.size(); i++) {
             if (Ingredients_Name[i].compare(input_name)) {
-                cout << "¿Á∑· ¿Ã∏ß :" << Ingredients_Name[i] << "\n";
-                cout << "« ø‰«— øÎ∑Æ :" << Ingredients_Scale[i] << "\n";
+                cout << "Ïû¨Î£å Ïù¥Î¶Ñ :" << Ingredients_Name[i] << "\n";
+                cout << "ÌïÑÏöîÌïú Ïö©Îüâ :" << Ingredients_Scale[i] << "\n";
                 break;
             }
         }
@@ -241,20 +88,20 @@ public:
     void deleteIngredient(int num) {
         Ingredients_Name.erase(Ingredients_Name.begin() + (num - 1));
         Ingredients_Scale.erase(Ingredients_Scale.begin() + (num - 1));
-    } //erase method∑Œ vectorø°º≠ π¯»£ø° ∏¬¥¬ «◊∏Ò ¡¶∞≈
+    } //erase methodÎ°ú vectorÏóêÏÑú Î≤àÌò∏Ïóê ÎßûÎäî Ìï≠Î™© Ï†úÍ±∞
 
 
     void showRecipe() {
-        cout << "∑πΩ√««: " << getName() << "\n";
-        cout << "« ø‰«— ¿Á∑·: ";
+        cout << "Î†àÏãúÌîº: " << getName() << "\n";
+        cout << "ÌïÑÏöîÌïú Ïû¨Î£å: ";
         for (int i = 0; i < Ingredients_Name.size(); i++) {
             cout << Ingredients_Name[i] << ": " << Ingredients_Scale[i] << "\n";
         }
-        cout << "¡∂∏Æ Ω√∞£: " << CookingTime << "\n";
-        cout << "¡∂∏Æ πÊπ˝: " << getContent() << "\n";
+        cout << "Ï°∞Î¶¨ ÏãúÍ∞Ñ: " << CookingTime << "\n";
+        cout << "Ï°∞Î¶¨ Î∞©Î≤ï: " << getContent() << "\n";
     }
 
-    
+
 };
 
 class RecipeDB
@@ -265,11 +112,14 @@ private:
 
 public:
     RecipeDB() {};
+
+    static RecipeDB& getInstance() {
+        static RecipeDB instance; // Ï†ïÏ†Å ÏßÄÏó≠ Î≥ÄÏàòÎ°ú Ïú†ÏùºÌïú Ïù∏Ïä§ÌÑ¥Ïä§Î•º ÏÉùÏÑ±Ìï©ÎãàÎã§.
+        return instance;
+    }
     void read_DB() {
         ifstream file("RecipeDBfile.txt");
         string line;
-
-
         while (getline(file, line)) {
             istringstream iss(line);
             string token;
@@ -317,23 +167,23 @@ public:
         }
     }
 
-    void add(string name, vector<string> ingredients_name,vector<int>ingredients_scale,int time,string contents) {
+    void add(string name, vector<string> ingredients_name, vector<int>ingredients_scale, int time, string contents) {
         Recipe newRecipe;
         newRecipe.setName(name);
-        newRecipe.setIngredient(ingredients_name,ingredients_scale);        
+        newRecipe.setIngredient(ingredients_name, ingredients_scale);
         newRecipe.setTime(time);
         newRecipe.setContents(contents);
         R_list.push_back(newRecipe);
     }
 
-    void update(string input_Name,string newName, vector<string> inputingredient_Name, vector<int> inputingredient_scale,int time,string content) {
+    void update(string input_Name, string newName, vector<string> inputingredient_Name, vector<int> inputingredient_scale, int time, string content) {
         for (int i = 0; i < R_list.size(); i++) {
             if (R_list[i].getName().compare(input_Name)) {
                 R_list[i].setName(newName);
                 R_list[i].setIngredient(inputingredient_Name, inputingredient_scale);
                 R_list[i].setTime(time);
                 R_list[i].setContents(content);
-                
+
             }
         }
     }
@@ -347,53 +197,53 @@ public:
                 j++;
             }
         }
-        cout << "∞Àªˆ«“ ∑πΩ√««(π¯»£): ";
+        cout << "Í≤ÄÏÉâÌï† Î†àÏãúÌîº(Î≤àÌò∏): ";
         int list_num; cin >> list_num;
         search_Content(list_num, newlist);
 
-    } // ∆Ø¡§ ≈∞øˆµÂ (ex. ª¯∑ØµÂ) µÈæÓ∞£ ∑πΩ√«« ¿Ã∏ß ∏µŒ √‚∑¬ (ex. 1. ¬¸ƒ° ª¯∑ØµÂ 2. ∞Ì±∏∏∂ ª¯∑ØµÂ ...) <- ¿Ã∞« »∏¿« ∂ß ¥Ÿ∏£∞‘ πŸ≤Ÿ±‚∑Œ «ﬂ¿Ω
+    } // ÌäπÏ†ï ÌÇ§ÏõåÎìú (ex. ÏÉêÎü¨Îìú) Îì§Ïñ¥Í∞Ñ Î†àÏãúÌîº Ïù¥Î¶Ñ Î™®Îëê Ï∂úÎ†• (ex. 1. Ï∞∏Ïπò ÏÉêÎü¨Îìú 2. Í≥†Íµ¨Îßà ÏÉêÎü¨Îìú ...) <- Ïù¥Í±¥ ÌöåÏùò Îïå Îã§Î•¥Í≤å Î∞îÍæ∏Í∏∞Î°ú ÌñàÏùå
 
     void search_Content(int list_num, vector<Recipe> newlist) {
         newlist[list_num - 1].showRecipe();
-    } // ∑πΩ√«« º¯º≠ input πﬁæ“¿ª ∂ß -> ∑πΩ√«« √‚∑¬
+    } // Î†àÏãúÌîº ÏàúÏÑú input Î∞õÏïòÏùÑ Îïå -> Î†àÏãúÌîº Ï∂úÎ†•
 
 
     vector<Recipe> search_list_2(string inputstr) {
         vector<Recipe> newRecipelist;
         for (int i = 0; i < R_list.size(); i++) {
-            if (R_list[i].getName().find(inputstr) != string::npos) { //input¿∏∑Œ πﬁ¿∫ string¿Ã RecipeDB¿« Recipe ¿Ã∏ß stringø° ∆˜«‘µ«æÓ ¿÷¿∏∏È
-                newRecipelist.push_back(R_list[i]); //newRecipelist (¿Ã∏ß vector)ø° ¿˙¿Â
+            if (R_list[i].getName().find(inputstr) != string::npos) { //inputÏúºÎ°ú Î∞õÏùÄ stringÏù¥ RecipeDBÏùò Recipe Ïù¥Î¶Ñ stringÏóê Ìè¨Ìï®ÎêòÏñ¥ ÏûàÏúºÎ©¥
+                newRecipelist.push_back(R_list[i]); //newRecipelist (Ïù¥Î¶Ñ vector)Ïóê Ï†ÄÏû•
             }
         }
         return newRecipelist;
-    } // recipe¿« vector∏¶ return «—¥Ÿ.
+    } // recipeÏùò vectorÎ•º return ÌïúÎã§.
 
     string search_recipeName(string inputstr) {
         string str;
         for (int i = 0; i < R_list.size(); i++) {
-            if (R_list[i].getName() == inputstr) { //input¿∏∑Œ πﬁ¿∫ string¿Ã RecipeDB¿« Recipe ¿Ã∏ß stringø° ∆˜«‘µ«æÓ ¿÷¿∏∏È
-                str = R_list[i].getName(); // strø° ¿˙¿Â
+            if (R_list[i].getName() == inputstr) { //inputÏúºÎ°ú Î∞õÏùÄ stringÏù¥ RecipeDBÏùò Recipe Ïù¥Î¶Ñ stringÏóê Ìè¨Ìï®ÎêòÏñ¥ ÏûàÏúºÎ©¥
+                str = R_list[i].getName(); // strÏóê Ï†ÄÏû•
                 break;
             }
         }
-        return str; //return¿∏∑Œ ¿Ã∏ß string¿ª ≥—∞‹¡ÿ¥Ÿ
+        return str; //returnÏúºÎ°ú Ïù¥Î¶Ñ stringÏùÑ ÎÑòÍ≤®Ï§ÄÎã§
     }
 
     Recipe search_recipe(string inputstr) {
         Recipe newRecipe;
         for (int i = 0; i < R_list.size(); i++) {
-            if (R_list[i].getName() == inputstr) { //input¿∏∑Œ πﬁ¿∫ πÆ¿⁄ø≠ = recipe πÆ¿⁄ø≠ (∫Ò±≥)
-                newRecipe = R_list[i]; // newRecipeø° «ˆ¿Á Recipe instance ¿˙¿Â
+            if (R_list[i].getName() == inputstr) { //inputÏúºÎ°ú Î∞õÏùÄ Î¨∏ÏûêÏó¥ = recipe Î¨∏ÏûêÏó¥ (ÎπÑÍµê)
+                newRecipe = R_list[i]; // newRecipeÏóê ÌòÑÏû¨ Recipe instance Ï†ÄÏû•
                 break;
             }
         }
-        return newRecipe; //return¿∏∑Œ Recipe ¿⁄√º ¡§∫∏∏¶ ≥—∞‹¡ÿ¥Ÿ
+        return newRecipe; //returnÏúºÎ°ú Recipe ÏûêÏ≤¥ Ï†ïÎ≥¥Î•º ÎÑòÍ≤®Ï§ÄÎã§
     }
     void showAll() {
         for (int i = 0; i < R_list.size(); i++) {
             cout << i + 1 << ". " << R_list[i].getName() << "\n";
         }
-    }; // ∏µÁ ∑πΩ√«« ¿Ã∏ß √‚∑¬
+    }; // Î™®Îì† Î†àÏãúÌîº Ïù¥Î¶Ñ Ï∂úÎ†•
 
     void Push_RecipeDB() {
         ofstream outputFile("RecipeDBfile.txt");
@@ -408,77 +258,6 @@ public:
         cout << "DB completely saved ";
     }
 };
-
-class Greeter {
-private:
-    RecipeDB Db;
-    Planner Pl;
-public:
-    Greeter(RecipeDB db, Planner pl) {//initialization of Greeter
-        Db = db;
-        Pl = pl;
-    }
-
-    Greeter(){}
-
-    vector<Recipe> callRecipe() {//Return all Recipe
-        return Db.search_list_2("");
-    }
-
-    vector<Recipe> callRecipeHaveString(string name) {//Return all recipe including "name"
-        return Db.search_list_2(name);
-    }
-
-    Recipe searchExactRecipe(string Name) {
-        return Db.search_recipe(Name);
-    }
-    void addRecipe(string name, vector<string> ingredients_name, vector<int>ingredients_scale, int time, string contents) {//Add recipe
-        Db.add(name, ingredients_name, ingredients_scale, time,contents);
-    }
-
-    void editRecipe(string input_Name, string newName, vector<string> inputingredient_Name, vector<int> inputingredient_scale, int time, string content) {
-        Db.update(input_Name,newName, inputingredient_Name, inputingredient_scale, time, content);
-    }
-    void deleteRecipe(string input_Name) {
-        //Not yet
-    }
-    list<date> callDateList() {
-        return Pl.getPlan();
-    }
-    date callDate(int date) {
-        return Pl.searchPlan(date);
-    }
-    list<date> arrangeDate() {
-        Pl.sortPlan();
-        return Pl.getPlan();
-    }
-
-    void addPlan(int dateTime, string dateName, vector<string> mealName) {
-        date dt = date(dateName, dateTime);
-        for (int i = 0; i < 3; i++) {
-            dt.setMealName(i, mealName[i]);
-        }
-        Pl.addPlan(dt);
-    }
-
-    list<date> getWeekPlan() {
-        list<date> week;
-        list<date> all = Pl.getPlan();
-        Pl.sortPlan();
-        int count = 0;
-        for (const date& item : all) {
-            week.push_back(item);
-            count++;
-            if (count == 7) {
-                break;
-            }
-        }
-        return week;
-    }
-    
-
-};
-
 class Meal
 {
 private:
@@ -488,10 +267,11 @@ private:
     vector<int> MealIngredient_Scale;//Scale of Ingredient
     int num_people;//Number of people who eat meal
     string Meal_Name;
-
 public:
-    Meal(RecipeDB* db) : mealDB(db) {}
-
+    Meal() {
+        mealDB = &RecipeDB::getInstance(); // ÏÉùÏÑ±Ïûê ÎÇ¥ÏóêÏÑú recipeDbÏóê Ï†ëÍ∑ºÌï©ÎãàÎã§.
+        // Meal ÏÉùÏÑ±Ïûê ÎÇ¥ÏóêÏÑú recipeDbÏóê ÎåÄÌïú Ï¥àÍ∏∞Ìôî ÎòêÎäî ÏÇ¨Ïö© ÏûëÏóÖ ÏàòÌñâ Í∞ÄÎä•
+    }
     string getMeal_Name() {
         return Meal_Name;
     }
@@ -499,7 +279,6 @@ public:
     Recipe getMeal_Recipe() {
         return Meal_Recipe;
     } //recipe instance return
-
 
     int getNum_people() {
         return num_people;
@@ -514,7 +293,6 @@ public:
     }
 
     void setMeal_name(string str) {
-
         Meal_Name = mealDB->search_recipeName(str);
     }
 
@@ -526,13 +304,301 @@ public:
         Meal_Recipe = mealDB->search_recipe(str);
     }
 
-    void setMealIngredient() {
+    void setMealIngredient(string str) {
+        Meal_Recipe = mealDB->search_recipe(str);
         MealIngredient_Name = Meal_Recipe.getIngredientsName();
         MealIngredient_Scale = Meal_Recipe.getIngredientsScale();
 
         for (int i = 0; i < MealIngredient_Name.size(); i++) {
             MealIngredient_Scale[i] *= num_people;
-        } // Ωƒºˆ π›øµ«— ¿Á∑· ∫Ò¿≤
+        } // ÏãùÏàò Î∞òÏòÅÌïú Ïû¨Î£å ÎπÑÏú®
     }
 };
+class date {
+private:
+    string dateName; //Name of the date
+    int dateTime; //actual date
+    Meal mealArray[3]; //ÏïÑÏπ®[0],Ï†êÏã¨[1],Ï†ÄÎÖÅ[2]
+    string mealNameArray[3];
+public:
+
+    date(string dateName, int dateTime) { //Initialization Function: Requires Name of the date and actual time
+        this->dateName = dateName;
+        this->dateTime = dateTime;
+
+    }
+    bool operator>(const date& datePt) { //Ï†ïÎ†¨ÏùÑ ÏúÑÌïú ÎπÑÍµêÏó∞ÏÇ∞Ïûê Ïò§Î≤ÑÎ°úÎî©
+        return dateTime > datePt.dateTime;
+    }
+    bool operator<(const date& datePt) { //Ï†ïÎ†¨ÏùÑ ÏúÑÌïú ÎπÑÍµêÏó∞ÏÇ∞Ïûê Ïò§Î≤ÑÎ°úÎî©
+        return dateTime < datePt.dateTime;
+    }
+    void setMeal(int mealNum, Meal newMeal) { //MealÎ∞∞Ïó¥Ïóê meal Ï†ÄÏû•([0]ÏïÑÏπ®[1]Ï†êÏã¨[2]Ï†ÄÎÖÅ
+        mealArray[mealNum] = newMeal;
+    }
+    void addMeal(int mealNum, string Meal_Name,int person) { //ÏïÑÏπ®[0], Ï†êÏã¨[1], Ï†ÄÎÖÅ[2]Ïóê ÏãùÏÇ¨ Ï∂îÍ∞Ä
+//ÏÇ¨Ïö©ÏûêÎ°úÎ∂ÄÌÑ∞ mealNum Î∞õÏùå
+//ÏÇ¨Ïö©ÏûêÎ°úÎ∂ÄÌÑ∞ meal nameÏùÑ Î∞õÏùå
+        mealArray[mealNum].setMeal_name(Meal_Name);
+        //ÏÇ¨Ïö©ÏûêÎ°úÎ∂ÄÌÑ∞ ÏãùÏàò Ïù∏Ïõê data Î∞õÏùå
+        mealArray[mealNum].setNum_people(person);
+        mealArray[mealNum].setMeal_Recipe(Meal_Name);
+        mealArray[mealNum].setMealIngredient(Meal_Name);
+    }
+    //void addMeal(int mealNum, meal newMeal) { //ÏïÑÏπ®[0], Ï†êÏã¨[1], Ï†ÄÎÖÅ[2]Ïóê ÏãùÏÇ¨ Ï∂îÍ∞Ä
+    //	mealArray[mealNum] = newMeal;
+    //}
+    void setMealName(int mealNum, string newMealName) {//Set Name of the Meal in Array
+        mealNameArray[mealNum] = newMealName;
+    }
+    string getDateName() { //Return dateName as String
+        return dateName;
+    }
+    int getDateTime() { //Return date Time as Int
+        return dateTime;
+    }
+    Meal getMeal(int arrayNum) { //ÏïÑÏπ®or Ï†êÏã¨or Ï†ÄÎÖÅ Î∞òÌôò
+    	return mealArray[arrayNum];
+    }
+    string getmealName(int arrayNum) {// Return Name of meal: Require variable indicate meal number
+        return mealNameArray[arrayNum];
+    }
+};
+class Planner {
+private:
+    list<date> dateList; //Save date as Linked List
+public:
+    void sort() {
+        this->dateList.sort();
+    }
+    void editPlan(int editDateNum, date editDate) { //planner ÏàòÏ†ï, editDateNum: ÏàòÏ†ïÌï† Í∞ùÏ≤¥index
+        deletePlan(editDateNum);
+        addPlan(editDate);
+        sort();
+    }
+    void savePlan() { //Save plan in Txt File
+        fstream savePlanFile;
+        list<date>::iterator dateListIt; //iterator decleration
+        savePlanFile.open("Planner.txt", ios::trunc); //Delete original file and save new(Because of repitition)
+        if (savePlanFile.is_open()) { //When file is opened
+            for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) { //Loop until end of list
+                //Read dateName, dateTime, Menu
+                savePlanFile << dateListIt->getDateName() << "\n"; //Save Name
+                savePlanFile << dateListIt->getDateTime() << "\n"; //Save date(yyyymmdd)
+                savePlanFile << dateListIt->getmealName(0) << "\n"; //Breakfast
+                savePlanFile << dateListIt->getmealName(1) << "\n"; //Lunch
+                savePlanFile << dateListIt->getmealName(2) << "\n"; //Dinner
+            }
+        }
+        else {
+            cout << "Filestream Error";
+        }
+        sort();
+        savePlanFile.close();
+    }
+
+    void loadPlan() { //txtÌååÏùºÏóêÏÑú Î∂àÎü¨Ïò¥.
+        fstream loadPlanFile;
+        string newDateName; //ÏÉàÎ°ú Î∞õÏïÑÏò¨ dateÏùò Ïù¥Î¶ÑÏùÑ Ï†ÄÏû•Ìï† Î≥ÄÏàò
+        int newDateTime; //ÏÉàÎ°ú Î∞õÏïÑÏò¨ ÎÇ†ÏßúÎ•º Ï†ÄÏû•Ìï† Î≥ÄÏàò
+        string newMealName[3]; //ÏÉàÎ°ú Î∞õÏïÑÏò¨ 3Í∞úÏùò mealÏùÑ Ï†ÄÏû•Ìï† Î≥ÄÏàò
+        int personNum[3]; //ÏãùÏàòÏù∏Ïõê
+        loadPlanFile.open("Planner.txt");
+
+        if (loadPlanFile.is_open()) { //ÌååÏùºÏù¥ Ï†ïÏÉÅÏ†ÅÏúºÎ°ú Ïó¥Î†∏Îã§Î©¥
+            while (!loadPlanFile.eof()) { //ÌååÏùºÏùÑ ÎÅùÍπåÏßÄ ÏùΩÏúºÎ©∞, Îã§ ÏùΩÏúºÎ©¥ Î∞òÎ≥µÎ¨∏ ÌÉàÏ∂ú
+                loadPlanFile >> newDateName;
+                loadPlanFile >> newDateTime;
+                loadPlanFile >> newMealName[0];
+                loadPlanFile >> personNum[0];
+
+                loadPlanFile >> newMealName[1];
+                loadPlanFile >> personNum[1];
+
+                loadPlanFile >> newMealName[2];
+                loadPlanFile >> personNum[2];
+
+                //ÏÉàÎ°úÏö¥ dateÍ∞ùÏ≤¥Î•º ÎßåÎì§Ïñ¥ dateListÏóê push.
+                date newDate(newDateName, newDateTime);
+
+                newDate.addMeal(0, newMealName[0], personNum[0]); //dateÍ∞ùÏ≤¥Ïóê mealÏ∂îÍ∞Ä
+                newDate.addMeal(1, newMealName[1], personNum[1]);
+                newDate.addMeal(2, newMealName[2], personNum[2]);
+
+                this->dateList.push_back(newDate);
+            }
+        }
+        else {
+            cout << "Filestream Error";
+        }
+        sort();
+        loadPlanFile.close();
+    }
+
+
+    void reviewPlan() { //Show whole Plan
+        list<date>::iterator dateListIt; //Iterator declare
+        this->dateList.sort(); //Sorting plan
+        //Print everything looping whole list
+        for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
+            cout << "Plan Name: " << dateListIt->getDateName() << "\n";
+            cout << "Plan Date: " << dateListIt->getDateTime() << "\n";
+            cout << "breakfast: " << dateListIt->getmealName(0) << "\n";
+            cout << "breakfast: " << dateListIt->getmealName(1) << "\n";
+            cout << "breakfast: " << dateListIt->getmealName(2) << "\n";
+        }
+    }
+
+    list<date> getPlan() {
+        return dateList;
+    }
+
+    date searchPlan(int dateTime) { //Search plan and return actual date
+        list<date>::iterator dateListIt; //Declare iterator, indicate node in list
+
+        //Search node for certain date(dateTime)
+        for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
+            if (dateTime == dateListIt->getDateTime()) { //When node is matched
+                return *dateListIt; //Return Node
+            }
+        }
+    }
+
+    date searchPlan(string dateName) { //Overload searchPlan
+        list<date>::iterator dateListIt; //Î∞òÎ≥µÏûê(iterator) ÏÑ†Ïñ∏, Î¶¨Ïä§Ìä∏Ïùò ÌäπÏ†ï ÎÖ∏ÎìúÎ•º Í∞ÄÎ¶¨ÌÇ¥
+
+        //dateList ÏàúÌöå(begin->end)ÌïòÎ©∞ ÌäπÏ†ï Ïù¥Î¶ÑÏùò ÎÖ∏Îìú(date)Î•º Í≤ÄÏÉâÌï®
+        for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
+            if (dateName == dateListIt->getDateName()) { //Í≤ÄÏÉâÌïòÎ†§Îäî Í≤ÉÍ≥º ÎÖ∏ÎìúÍ∞Ä ÏùºÏπòÌïúÎã§Î©¥
+                return *dateListIt; //Î∞òÎ≥µÏûêÍ∞Ä Í∞ÄÎ¶¨ÌÇ§Îäî ÎÖ∏ÎìúÎ•º Î¶¨ÌÑ¥Ìï®.
+            }
+        }
+    }
+
+
+    void addPlan(date newDate) { //Add date to planner
+        this->dateList.push_back(newDate);
+        sort();
+    }
+
+    void deletePlan(int dateNum) { //Delete dateNum's date
+        list<date>::iterator dateListIt = this->dateList.begin();
+        for (int i = 0; i < dateNum; i++) {
+            dateListIt++;
+        }
+        this->dateList.erase(dateListIt);
+    }
+
+};
+
+
+
+class Greeter {
+private:
+    RecipeDB* Db;
+    Planner Pl;
+public:
+    Greeter() {
+        Db = &RecipeDB::getInstance();
+    }
+    Greeter(Planner pl) {//initialization of Greeter
+        Db = &RecipeDB::getInstance();
+        Pl = pl;
+    }
+    void loadEverything() {
+        Db->read_DB();
+        Pl.loadPlan();
+    }
+    void saveEverything() {
+        Db->Push_RecipeDB();
+        Pl.savePlan();
+    }
+    vector<Recipe> callRecipe() {//Return all Recipe
+        return Db->search_list_2("");
+    }
+
+    vector<Recipe> callRecipeHaveString(string name) {//Return all recipe including "name"
+        return Db->search_list_2(name);
+    }
+    string stringInfo(string Name) {
+        Recipe rp = searchExactRecipe(Name);
+        string info = "-Ïû¨Î£å-\n";
+        int ingrNum = rp.get_Ingredient_size();
+        for (int i = 0;i < ingrNum;i++) {
+            info += rp.getIngredientsName().at(i);
+            info += " : ";
+            info += std::to_string(rp.getIngredientsScale().at(i)) + "\n";
+        }
+        info += "\n";
+        return info;
+    }
+    vector<string> randomRecipe(int num) {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        vector<string> list;
+        vector<Recipe> rp = callRecipe();
+        std::uniform_int_distribution<int> distribution(0, rp.size());
+        for (int i = 0;i < num;i++) {
+            list.push_back(rp.at(distribution(gen)).getName());
+        }
+        return list;
+    }
+    Recipe searchExactRecipe(string Name) {
+        return Db->search_recipe(Name);
+    }
+    void addRecipe(string name, vector<string> ingredients_name, vector<int>ingredients_scale, int time, string contents) {//Add recipe
+        Db->add(name, ingredients_name, ingredients_scale, time, contents);
+        saveEverything();
+    }
+
+    void editRecipe(string input_Name, string newName, vector<string> inputingredient_Name, vector<int> inputingredient_scale, int time, string content) {
+        Db->update(input_Name, newName, inputingredient_Name, inputingredient_scale, time, content);
+        saveEverything();
+    }
+    list<date> callDateList() {
+        return Pl.getPlan();
+    }
+    date callDate(string name) {
+        return Pl.searchPlan(name);
+    }
+    date callDate(int date) {
+        return Pl.searchPlan(date);
+    }
+    list<date> arrangeDate() {
+        Pl.sort();
+        return Pl.getPlan();
+    }
+
+    void addPlan(int dateTime, string dateName, vector<string> mealName, vector<int> person) {
+        date dt = date(dateName, dateTime);
+        for (int i = 0;i < 3;i++) {
+            dt.addMeal(i, mealName.at(i), person.at(i));
+        }
+        Pl.addPlan(dt);
+    }
+
+    list<date> getWeekPlan() {
+        list<date> week;
+        list<date> all = Pl.getPlan();
+        Pl.sort();
+        int count = 0;
+        for (const date& item : all) {
+            week.push_back(item);
+            count++;
+            if (count == 7) {
+                break;
+            }
+        }
+        return week;
+    }
+    date getPlan(string name) {
+        date plan = Pl.searchPlan(name);
+        return plan;
+    }
+
+    string translateDateType(int date) {
+        return std::to_string(date / 10000) + "-" + std::to_string((date % 10000) / 100) + "-" + std::to_string(date % 100);
+    }
+};
+
 #endif

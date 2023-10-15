@@ -27,6 +27,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -104,12 +105,10 @@
     <QtUic Include="RecipeListWindow.ui" />
     <QtUic Include="MainWindow.ui" />
     <QtMoc Include="OOP_Project_Qt.h" />
-    <ClCompile Include="ConsoleUIcpp.cpp" />
     <ClCompile Include="OOP_Project_Qt.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConsoleUI.h" />
     <ClInclude Include="greeter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

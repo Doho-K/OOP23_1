@@ -54,6 +54,10 @@ public:
     QLabel *label;
     QLineEdit *nameOfIngredient5;
     QSpinBox *numOfIngredient5;
+    QHBoxLayout *horizontalLayout_8;
+    QSpacerItem *horizontalSpacer_3;
+    QLabel *cookTimeLable;
+    QSpinBox *cookTime;
     QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
@@ -191,6 +195,25 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_4);
 
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_3);
+
+        cookTimeLable = new QLabel(centralwidget);
+        cookTimeLable->setObjectName("cookTimeLable");
+
+        horizontalLayout_8->addWidget(cookTimeLable);
+
+        cookTime = new QSpinBox(centralwidget);
+        cookTime->setObjectName("cookTime");
+
+        horizontalLayout_8->addWidget(cookTime);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_8);
+
 
         verticalLayout->addLayout(verticalLayout_2);
 
@@ -236,6 +259,7 @@ public:
         label_3->setText(QCoreApplication::translate("RecipeInputWindow", "\354\236\254\353\243\214\353\252\205 : ", nullptr));
         label_2->setText(QCoreApplication::translate("RecipeInputWindow", "\354\236\254\353\243\214\353\252\205 : ", nullptr));
         label->setText(QCoreApplication::translate("RecipeInputWindow", "\354\236\254\353\243\214\353\252\205 : ", nullptr));
+        cookTimeLable->setText(QCoreApplication::translate("RecipeInputWindow", "\354\241\260\353\246\254 \354\213\234\352\260\204", nullptr));
         saveButton->setText(QCoreApplication::translate("RecipeInputWindow", "\354\240\200\354\236\245", nullptr));
         escButton->setText(QCoreApplication::translate("RecipeInputWindow", "\354\267\250\354\206\214", nullptr));
     } // retranslateUi

@@ -15,8 +15,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollArea>
-#include <QtWidgets/QScrollBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
@@ -30,11 +28,7 @@ public:
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QLabel *FoodNameLable;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QHBoxLayout *horizontalLayout_2;
     QTextEdit *RecipeTextArea;
-    QScrollBar *verticalScrollBar;
     QHBoxLayout *horizontalLayout;
     QPushButton *EditButton;
     QPushButton *DeleteButton;
@@ -60,29 +54,11 @@ public:
 
         verticalLayout->addWidget(FoodNameLable);
 
-        scrollArea = new QScrollArea(centralwidget);
-        scrollArea->setObjectName("scrollArea");
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 430, 225));
-        horizontalLayout_2 = new QHBoxLayout(scrollAreaWidgetContents);
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        RecipeTextArea = new QTextEdit(scrollAreaWidgetContents);
+        RecipeTextArea = new QTextEdit(centralwidget);
         RecipeTextArea->setObjectName("RecipeTextArea");
         RecipeTextArea->setReadOnly(true);
 
-        horizontalLayout_2->addWidget(RecipeTextArea);
-
-        verticalScrollBar = new QScrollBar(scrollAreaWidgetContents);
-        verticalScrollBar->setObjectName("verticalScrollBar");
-        verticalScrollBar->setOrientation(Qt::Vertical);
-
-        horizontalLayout_2->addWidget(verticalScrollBar);
-
-        scrollArea->setWidget(scrollAreaWidgetContents);
-
-        verticalLayout->addWidget(scrollArea);
+        verticalLayout->addWidget(RecipeTextArea);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");

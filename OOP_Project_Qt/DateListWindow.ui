@@ -88,7 +88,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QDateTimeEdit" name="StartDate"/>
+         <widget class="QDateEdit" name="StartDate"/>
         </item>
         <item>
          <widget class="QLabel" name="label_2">
@@ -98,7 +98,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QDateTimeEdit" name="EndDate"/>
+         <widget class="QDateEdit" name="EndDate"/>
         </item>
         <item>
          <spacer name="horizontalSpacer_5">

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QtWidgets/QMainWindow>
 #include <qmessagebox.h>
@@ -25,41 +25,41 @@ public:
 private:
     Greeter greeter;
 
-    //¸ŞÀÎÃ¢
+    //ë©”ì¸ì°½
     Ui::MainWindow main;
 
-    //·¹½ÃÇÇ °ü¸® Ã¢
+    //ë ˆì‹œí”¼ ê´€ë¦¬ ì°½
     Ui::RecipeListWindow recipeList;
     Ui::RecipeViewWindow recipeView;
     Ui::RecipeInputWindow recipeInput;
 
-    //ÀÏÁ¤ °ü¸® Ã¢
+    //ì¼ì • ê´€ë¦¬ ì°½
     Ui::DateInputWindow dateInput;
     Ui::DateListWindow dateList;
     Ui::DateViewWindow dateView;
 
 public slots:
-    //¸ŞÀÎÃ¢ ±¸¼º
+    //ë©”ì¸ì°½ êµ¬ì„±
     void openMainWindow();
 
-    //·¹½ÃÇÇ °ü¸® Ã¢ ±¸¼º
+    //ë ˆì‹œí”¼ ê´€ë¦¬ ì°½ êµ¬ì„±
     void openRecipeInputWindow();
     void openRecipeListWindow();
     void openRecipeViewWindow(QModelIndex);
 
-    //·¹½ÃÇÇ °ü¸®
+    //ë ˆì‹œí”¼ ê´€ë¦¬
     void InputRecipeInfo();
     void openRecipeInputWindowForEdit();
     void deleteRecipeInfo();
     void deleteThisRecipeInfo();
     void setRecipeSearchInfo();
 
-    //ÀÏÁ¤ °ü¸® Ã¢ ±¸¼º
+    //ì¼ì • ê´€ë¦¬ ì°½ êµ¬ì„±
     void openDateInputWindow();
     void openDateListWindow();
     void openDateViewWindow();
 
-    //ÀÏÁ¤ °ü¸®
+    //ì¼ì • ê´€ë¦¬
     void InputDateInfo();
     void deleteDateInfo();
     void openDateInputWindowForEdit();

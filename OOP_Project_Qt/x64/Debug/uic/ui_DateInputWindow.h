@@ -12,7 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -40,8 +40,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
-    QDateTimeEdit *dateTime;
-    QSpacerItem *verticalSpacer;
+    QDateEdit *dateTime;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
@@ -118,17 +117,13 @@ public:
 
         horizontalLayout->addWidget(label);
 
-        dateTime = new QDateTimeEdit(centralwidget);
+        dateTime = new QDateEdit(centralwidget);
         dateTime->setObjectName("dateTime");
 
         horizontalLayout->addWidget(dateTime);
 
 
         verticalLayout_2->addLayout(horizontalLayout);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_2->addItem(verticalSpacer);
 
 
         horizontalLayout_3->addLayout(verticalLayout_2);

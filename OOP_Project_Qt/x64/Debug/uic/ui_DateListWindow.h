@@ -11,7 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -38,9 +38,9 @@ public:
     QLabel *label_3;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_4;
-    QDateTimeEdit *StartDate;
+    QDateEdit *StartDate;
     QLabel *label_2;
-    QDateTimeEdit *EndDate;
+    QDateEdit *EndDate;
     QSpacerItem *horizontalSpacer_5;
     QLineEdit *SearchText;
     QListWidget *listWidget;
@@ -100,7 +100,7 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer_4);
 
-        StartDate = new QDateTimeEdit(centralwidget);
+        StartDate = new QDateEdit(centralwidget);
         StartDate->setObjectName("StartDate");
 
         horizontalLayout_2->addWidget(StartDate);
@@ -110,7 +110,7 @@ public:
 
         horizontalLayout_2->addWidget(label_2);
 
-        EndDate = new QDateTimeEdit(centralwidget);
+        EndDate = new QDateEdit(centralwidget);
         EndDate->setObjectName("EndDate");
 
         horizontalLayout_2->addWidget(EndDate);

@@ -58,7 +58,7 @@ public:
     QHBoxLayout *horizontalLayout_8;
     QLabel *label_9;
     QSpacerItem *horizontalSpacer_2;
-    QTextBrowser *textBrowser;
+    QTextBrowser *ingredients;
     QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer;
     QPushButton *editButton;
@@ -232,10 +232,10 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_8);
 
-        textBrowser = new QTextBrowser(centralwidget);
-        textBrowser->setObjectName("textBrowser");
+        ingredients = new QTextBrowser(centralwidget);
+        ingredients->setObjectName("ingredients");
 
-        verticalLayout->addWidget(textBrowser);
+        verticalLayout->addWidget(ingredients);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName("horizontalLayout_5");

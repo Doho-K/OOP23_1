@@ -221,7 +221,7 @@
      </layout>
     </item>
     <item>
-     <widget class="QTextBrowser" name="textBrowser"/>
+     <widget class="QTextBrowser" name="ingredients"/>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
