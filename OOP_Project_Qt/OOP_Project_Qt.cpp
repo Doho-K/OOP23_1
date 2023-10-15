@@ -18,7 +18,11 @@ OOP_Project_Qt::~OOP_Project_Qt()
 //메인 창 구현
 void OOP_Project_Qt::openMainWindow() {
     main.setupUi(this);
-    greeter.loadEverything();
+
+    time_t t = std::time(nullptr);
+    tm* tt = localtime(&t);
+    int n = (tt->tm_year + 1900) * 10000 + (tt->tm_mon + 1) * 100 + tt->tm_mday;
+    main.date->setText(QString::fromStdString(std::to_string(n)));
 
     list<date> dates = greeter.callDateList();
     QLabel* dateLables[7] = { main.date1, main.date2, main.date3, main.date4, main.date5, main.date6, main.date7 };
@@ -28,16 +32,35 @@ void OOP_Project_Qt::openMainWindow() {
     list<date>::iterator iter = dates.begin();
     int i = 0;
     for (iter; iter != dates.end(); iter++) {
+        int day = (*iter).getDateTime();
         if (i > 6)
             break;
 
-        int day = (*iter).getDateTime();
-        string dayString = std::to_string(day / 10000) + "-" + std::to_string((day % 10000) / 100) + "-" + std::to_string(day % 100);
-        dateLables[i]->setText(QString::fromStdString(dayString));
-        dateMorningLables[i]->setText(QString::fromStdString((*iter).getMeal(0).getMeal_Name()));
-        dateLunchLables[i]->setText(QString::fromStdString((*iter).getMeal(1).getMeal_Name()));
-        dateDinnerLables[i]->setText(QString::fromStdString((*iter).getMeal(2).getMeal_Name()));
+        if (day >= n) {
+            //string dayString = std::to_string(day / 10000) + "-" + std::to_string((day % 10000) / 100) + "-" + std::to_string(day % 100);
+            //dateLables[i]->setText(QString::fromStdString(dayString));
+            dateLables[i]->setText(QString::fromStdString(std::to_string(day)));
+            dateMorningLables[i]->setText(QString::fromStdString((*iter).getMeal(0).getMeal_Name()));
+            dateLunchLables[i]->setText(QString::fromStdString((*iter).getMeal(1).getMeal_Name()));
+            dateDinnerLables[i]->setText(QString::fromStdString((*iter).getMeal(2).getMeal_Name()));
+            i++;
+        }
     }
+    
+    try
+    {
+        string recom = "이 메뉴는 어떠신가요? - ";
+        ///*
+        for (string t : greeter.randomRecipe(1)) {
+            recom += t;
+        }//*/
+        //recom += "떡볶이";
+        main.recommendLable->setText(QString::fromStdString(recom));
+    }
+    catch (const std::exception&)
+    {
+        main.recommendLable->setText(QString::fromStdString("레시피를 추가해주세요."));
+    }    
 
     connect(main.recipeButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
     connect(main.dateButton, SIGNAL(clicked()), this, SLOT(openDateListWindow()));
@@ -45,6 +68,7 @@ void OOP_Project_Qt::openMainWindow() {
 
 //레시피 관리 창 구현
 void OOP_Project_Qt::openRecipeListWindow() {
+    selectString = "";
     recipeList.setupUi(this);
     recipeList.listWidget->clear();
 
@@ -71,15 +95,24 @@ void OOP_Project_Qt::openRecipeInputWindow() {
 
 //레시피 확인 창
 void OOP_Project_Qt::openRecipeViewWindow(QModelIndex index) {
-    QString a = recipeList.listWidget->itemFromIndex(index)->text();
-    //Recipe target = greeter.searchExactRecipe(recipeList.listWidget->itemFromIndex(index)->text().toStdString());
-    Recipe target = greeter.searchExactRecipe(a.toStdString());
+    try
+    {
+        QString a = recipeList.listWidget->itemFromIndex(index)->text();
+        //Recipe target = greeter.searchExactRecipe(recipeList.listWidget->itemFromIndex(index)->text().toStdString());
+        Recipe target = greeter.searchExactRecipe(a.toStdString());
 
-    recipeView.setupUi(this);
+        recipeView.setupUi(this);
 
-    //recipeView.FoodNameLable->setText(QString::fromStdString(target.getName()));
-    recipeView.FoodNameLable->setText(a);
-    recipeView.RecipeTextArea->setText(QString::fromStdString(greeter.stringInfo(target.getName()) + "소요시간 : " + std::to_string(target.getCookingTime()) + "\n\n-조리법-\n" + target.getContent()));
+        //recipeView.FoodNameLable->setText(QString::fromStdString(target.getName()));
+        recipeView.FoodNameLable->setText(a);
+        recipeView.RecipeTextArea->setText(QString::fromStdString("-재료-\n" + greeter.stringInfo(target.getName()) + "소요시간 : " + std::to_string(target.getCookingTime()) + "\n\n-조리법-\n" + target.getContent()));
+    }
+    catch (const std::exception&)
+    {
+        QMessageBox box;
+        box.setText("오류가 발생했습니다");
+        recipeList.setupUi(this);
+    }
 
     connect(recipeView.EditButton, SIGNAL(clicked()), this, SLOT(openRecipeInputWindowForEdit()));
     connect(recipeView.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteThisRecipeInfo()));
@@ -117,7 +150,12 @@ void OOP_Project_Qt::InputRecipeInfo() {
             return;
         }
 
-        greeter.addRecipe(recipeInput.lineEdit->text().toStdString(), ingredient, numOfIngredient, recipeInput.cookTime->value(), recipeInput.textEdit->toPlainText().toStdString());
+        if (selectString != "") {
+            greeter.addRecipe(recipeInput.lineEdit->text().toStdString(), ingredient, numOfIngredient, recipeInput.cookTime->value(), recipeInput.textEdit->toPlainText().toStdString());
+        }
+        else {
+            greeter.editRecipe(selectString, recipeInput.lineEdit->text().toStdString(), ingredient, numOfIngredient, recipeInput.cookTime->value(), recipeInput.textEdit->toPlainText().toStdString());
+        }
         greeter.saveEverything();
 
         openRecipeListWindow();
@@ -144,6 +182,7 @@ void OOP_Project_Qt::setRecipeSearchInfo() {
 //recipeViewWindow에서 수정 버튼을 클릭 시
 void OOP_Project_Qt::openRecipeInputWindowForEdit() {
     Recipe recipe = greeter.searchExactRecipe(recipeView.FoodNameLable->text().toStdString());
+    selectString = recipe.getName();
     recipeInput.setupUi(this);
 
     recipeInput.lineEdit->setText(QString::fromStdString(recipe.getName()));
@@ -173,11 +212,18 @@ void OOP_Project_Qt::deleteThisRecipeInfo() {
 
 //일정 관리 창 구현
 void OOP_Project_Qt::openDateListWindow() {
+    selectString = "";
     dateList.setupUi(this);
 
     setDateSearchInfo();
 
     connect(dateList.MainButton, SIGNAL(clicked()), this, SLOT(openMainWindow()));
+
+    time_t t = std::time(nullptr);
+    tm* tt = localtime(&t);
+
+    dateList.StartDate->setDate(QDate(tt->tm_year + 1900, tt->tm_mon + 1, tt->tm_mday));
+    dateList.EndDate->setDate(QDate(tt->tm_year + 1900 + (tt->tm_mon + 4 > 11 ? 1 : 0), (tt->tm_mon + 4) % 12, tt->tm_mday));
 
     connect(dateList.StartDate, SIGNAL(dateTimeChanged(const QDateTime)), this, SLOT(setDateSearchInfo()));
     connect(dateList.EndDate, SIGNAL(dateTimeChanged(const QDateTime)), this, SLOT(setDateSearchInfo()));
@@ -192,6 +238,12 @@ void OOP_Project_Qt::openDateListWindow() {
 //일정 정보 입력 창 구현
 void OOP_Project_Qt::openDateInputWindow() {
     dateInput.setupUi(this);
+
+    dateInput.dateName->setText("");
+    time_t t = std::time(nullptr);
+    tm *tt = localtime(&t);
+    
+    dateInput.dateTime->setDate(QDate(tt->tm_year + 1900, tt->tm_mon + 1, tt->tm_mday));
 
     dateInput.morningMeal->addItem(QString::fromStdString(""));
     dateInput.lunchMeal->addItem(QString::fromStdString(""));
@@ -209,7 +261,8 @@ void OOP_Project_Qt::openDateInputWindow() {
 
 //일정 정보 확인 창 구현
 void OOP_Project_Qt::openDateViewWindow() {
-    istringstream s(dateList.listWidget->currentItem()->text().toStdString());
+    selectString = dateList.listWidget->currentItem()->text().toStdString();
+    istringstream s(selectString);
     string t;
     getline(s, t, ':');
     dateView.setupUi(this);
@@ -230,13 +283,13 @@ void OOP_Project_Qt::openDateViewWindow() {
         dateView.dinner->setText(QString::fromStdString(target.getMeal(2).getMeal_Name()));
         dateView.numOfDinner->setText(QString::fromStdString(std::to_string(target.getMeal(2).getNum_people())));
 
-        string tmp = "";
+        string tmp = "-재료-\n";
         for (int i = 0; i < 3; i++) {
             if (target.getMeal(i).getMeal_Name() != "") {
                 tmp += greeter.stringInfo(target.getMeal(i).getMeal_Name());
             }
         }
-        dateView.ingredients->setText(QString::fromStdString("tmp"));
+        dateView.ingredients->setText(QString::fromStdString(tmp));
     }
     catch (const std::exception& e)
     {
@@ -265,7 +318,12 @@ void OOP_Project_Qt::InputDateInfo() {
     numOfMeal.push_back(dateInput.lunchNumOfHuman->value());
     numOfMeal.push_back(dateInput.dinnerNumOfHuman->value());
 
-    greeter.addPlan(dateNum, dateInput.dateName->text().toStdString(), mealInfo, numOfMeal);
+    if (selectString != "") {
+        greeter.editPlan(stoi(selectString), dateNum, dateInput.dateName->text().toStdString(), mealInfo, numOfMeal);
+    }
+    else {
+        greeter.addPlan(dateNum, dateInput.dateName->text().toStdString(), mealInfo, numOfMeal);
+    }
     greeter.saveEverything();
     openDateListWindow();
 }
@@ -276,16 +334,40 @@ void OOP_Project_Qt::deleteDateInfo() {
 
 void OOP_Project_Qt::openDateInputWindowForEdit() {
     dateInput.setupUi(this);
+    date target = greeter.callDate(stoi(selectString));
 
-    //목록
+    dateInput.dateName->setText(QString::fromStdString(target.getDateName()));
+    dateInput.dateTime->setDate(QDate(target.getDateTime() / 10000, (target.getDateTime() % 10000) / 100, target.getDateTime() % 100));
+
+    dateInput.morningMeal->addItem(QString::fromStdString(""));
+    dateInput.lunchMeal->addItem(QString::fromStdString(""));
+    dateInput.dinnerMeal->addItem(QString::fromStdString(""));
+
+    for (Recipe recipe : greeter.callRecipe()) {
+        dateInput.morningMeal->addItem(QString::fromStdString(recipe.getName()));
+        dateInput.lunchMeal->addItem(QString::fromStdString(recipe.getName()));
+        dateInput.dinnerMeal->addItem(QString::fromStdString(recipe.getName()));
+    }
+
+    dateInput.morningMeal->setCurrentIndex(dateInput.morningMeal->findText(QString::fromStdString(target.getMeal(0).getMeal_Name())));
+    dateInput.morningNumOfHuman->setValue(target.getMeal(0).getNum_people());
+
+    dateInput.lunchMeal->setCurrentIndex(dateInput.morningMeal->findText(QString::fromStdString(target.getMeal(1).getMeal_Name())));
+    dateInput.lunchNumOfHuman->setValue(target.getMeal(0).getNum_people());
+
+    dateInput.dinnerMeal->setCurrentIndex(dateInput.morningMeal->findText(QString::fromStdString(target.getMeal(2).getMeal_Name())));
+    dateInput.dinnerNumOfHuman->setValue(target.getMeal(0).getNum_people());
 
     connect(dateInput.saveButton, SIGNAL(clicked()), SLOT(InputDateInfo()));
     connect(dateInput.escButton, SIGNAL(clicked()), SLOT(openDateListWindow()));
-
 }
 
 void OOP_Project_Qt::deleteThisDateInfo() {
+    greeter.deletePlan(stoi(selectString));
+    selectString = "";
+
     openDateListWindow();
+    greeter.saveEverything();
 }
 
 void OOP_Project_Qt::setDateSearchInfo() {

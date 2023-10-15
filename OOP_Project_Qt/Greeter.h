@@ -321,7 +321,9 @@ private:
     Meal mealArray[3]; //아침[0],점심[1],저녁[2]
     string mealNameArray[3];
 public:
+    date() {
 
+    }
     date(string dateName, int dateTime) { //Initialization Function: Requires Name of the date and actual time
         this->dateName = dateName;
         this->dateTime = dateTime;
@@ -377,17 +379,20 @@ public:
         sort();
     }
     void savePlan() { //Save plan in Txt File
-        fstream savePlanFile;
+        ofstream savePlanFile("Planner.txt");
         list<date>::iterator dateListIt; //iterator decleration
-        savePlanFile.open("Planner.txt", ios::trunc); //Delete original file and save new(Because of repitition)
+
         if (savePlanFile.is_open()) { //When file is opened
             for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) { //Loop until end of list
                 //Read dateName, dateTime, Menu
                 savePlanFile << dateListIt->getDateName() << "\n"; //Save Name
                 savePlanFile << dateListIt->getDateTime() << "\n"; //Save date(yyyymmdd)
-                savePlanFile << dateListIt->getmealName(0) << "\n"; //Breakfast
-                savePlanFile << dateListIt->getmealName(1) << "\n"; //Lunch
-                savePlanFile << dateListIt->getmealName(2) << "\n"; //Dinner
+                savePlanFile << dateListIt->getMeal(0).getMeal_Name() << "\n"; //Breakfast
+                savePlanFile << dateListIt->getMeal(0).getNum_people() << "\n"; // 아침 식수인원
+                savePlanFile << dateListIt->getMeal(1).getMeal_Name() << "\n"; //Lunch
+                savePlanFile << dateListIt->getMeal(1).getNum_people() << "\n"; // 점심 식수인원
+                savePlanFile << dateListIt->getMeal(2).getMeal_Name() << "\n"; //Dinner
+                savePlanFile << dateListIt->getMeal(2).getNum_people() << "\n"; // 저녁 식수인원
             }
         }
         else {
@@ -475,7 +480,33 @@ public:
         }
     }
 
+    list<date> searchPlan(int startDateTime, int endDateTime) { //특정 기간 내에 속하는 모든 dateList 반환
+        list<date> returnDateList;
+        date tempDate; //임시 저장 변수
+        list<date>::iterator dateListIt; //반복자(iterator) 선언, 리스트의 특정 노드를 가리킴
 
+        //dateList 순회(begin->end)하며 특정 이름의 노드(date)를 검색함
+        for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
+            if (dateListIt->getDateTime() >= startDateTime && dateListIt->getDateTime() <= endDateTime) {
+                tempDate = *dateListIt;
+                returnDateList.push_back(tempDate);
+            }
+        }
+        return returnDateList;
+    }
+    int dateOrder(int dateTime) { //datetime에 해당하는 date가 몇 번째 리스트에 있는지 반환.
+        list<date>::iterator dateListIt; //Declare iterator, indicate node in list
+        int dateOrderCount = 0; //date객체 순서(index)
+
+        //Search node for certain date(dateTime)
+        for (dateListIt = this->dateList.begin(); dateListIt != this->dateList.end(); dateListIt++) {
+            if (dateListIt->getDateTime() == dateTime) {
+                return dateOrderCount;
+            }
+            dateOrderCount++;
+        }
+        return -1; //해당 사항 없다면 -1 반환
+    }
     void addPlan(date newDate) { //Add date to planner
         this->dateList.push_back(newDate);
         sort();
@@ -500,10 +531,12 @@ private:
 public:
     Greeter() {
         Db = &RecipeDB::getInstance();
+        loadEverything();
     }
     Greeter(Planner pl) {//initialization of Greeter
         Db = &RecipeDB::getInstance();
         Pl = pl;
+        loadEverything();
     }
     void loadEverything() {
         Db->read_DB();
@@ -522,23 +555,28 @@ public:
     }
     string stringInfo(string Name) {
         Recipe rp = searchExactRecipe(Name);
-        string info = "-재료-\n";
+        string info = "";
         int ingrNum = rp.get_Ingredient_size();
         for (int i = 0;i < ingrNum;i++) {
             info += rp.getIngredientsName().at(i);
             info += " : ";
             info += std::to_string(rp.getIngredientsScale().at(i)) + "\n";
         }
-        info += "\n";
         return info;
+    }
+    string translateDateType(int date) {
+        return std::to_string(date / 10000) + "-" + std::to_string((date % 10000) / 100) + "-" + std::to_string(date % 100);
     }
     vector<string> randomRecipe(int num) {
         std::random_device rd;
         std::mt19937 gen(rd());
         vector<string> list;
         vector<Recipe> rp = callRecipe();
-        std::uniform_int_distribution<int> distribution(0, rp.size());
-        for (int i = 0;i < num;i++) {
+        if (rp.size() == 0) {
+            return list;
+        }
+        std::uniform_int_distribution<int> distribution(0, rp.size() - 1);
+        for (int i = 0; i < num; i++) {
             list.push_back(rp.at(distribution(gen)).getName());
         }
         return list;
@@ -575,6 +613,7 @@ public:
             dt.addMeal(i, mealName.at(i), person.at(i));
         }
         Pl.addPlan(dt);
+        saveEverything();
     }
 
     list<date> getWeekPlan() {
@@ -591,14 +630,26 @@ public:
         }
         return week;
     }
+    void deletePlan(int dateTime) {
+        Pl.deletePlan(Pl.dateOrder(dateTime));
+        saveEverything();
+    }
+    void editPlan(int dateTimeOri,int dateTimeNew,string dateName,vector<string> mealName,vector<int> person) {
+        date dt = date(dateName, dateTimeNew);
+        for (int i = 0;i < 3;i++) {
+            dt.addMeal(i, mealName.at(i), person.at(i));
+        }
+        Pl.editPlan(Pl.dateOrder(dateTimeOri), dt);
+        saveEverything();
+    }
     date getPlan(string name) {
         date plan = Pl.searchPlan(name);
         return plan;
     }
-
-    string translateDateType(int date) {
-        return std::to_string(date / 10000) + "-" + std::to_string((date % 10000) / 100) + "-" + std::to_string(date % 100);
+    list<date> getPlan(int start, int end) {
+        return Pl.searchPlan(start, end);
     }
+
 };
 
 #endif
