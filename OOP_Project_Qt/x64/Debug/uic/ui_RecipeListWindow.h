@@ -38,7 +38,6 @@ public:
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *AddButton;
-    QPushButton *DeleteButton;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *RecipeListWindow)
@@ -95,11 +94,6 @@ public:
 
         horizontalLayout->addWidget(AddButton);
 
-        DeleteButton = new QPushButton(centralwidget);
-        DeleteButton->setObjectName("DeleteButton");
-
-        horizontalLayout->addWidget(DeleteButton);
-
 
         verticalLayout->addLayout(horizontalLayout);
 
@@ -119,7 +113,6 @@ public:
         label->setText(QCoreApplication::translate("RecipeListWindow", "Recipe List", nullptr));
         MainButton->setText(QCoreApplication::translate("RecipeListWindow", "go to Main", nullptr));
         AddButton->setText(QCoreApplication::translate("RecipeListWindow", "Add", nullptr));
-        DeleteButton->setText(QCoreApplication::translate("RecipeListWindow", "Delete", nullptr));
     } // retranslateUi
 
 };

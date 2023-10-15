@@ -31,7 +31,6 @@ public:
     QTextEdit *RecipeTextArea;
     QHBoxLayout *horizontalLayout;
     QPushButton *EditButton;
-    QPushButton *DeleteButton;
     QPushButton *CloseButton;
     QStatusBar *statusbar;
 
@@ -67,11 +66,6 @@ public:
 
         horizontalLayout->addWidget(EditButton);
 
-        DeleteButton = new QPushButton(centralwidget);
-        DeleteButton->setObjectName("DeleteButton");
-
-        horizontalLayout->addWidget(DeleteButton);
-
         CloseButton = new QPushButton(centralwidget);
         CloseButton->setObjectName("CloseButton");
 
@@ -95,7 +89,6 @@ public:
         RecipeViewWindow->setWindowTitle(QCoreApplication::translate("RecipeViewWindow", "Recipe", nullptr));
         FoodNameLable->setText(QCoreApplication::translate("RecipeViewWindow", "Recipe Name", nullptr));
         EditButton->setText(QCoreApplication::translate("RecipeViewWindow", "Edit", nullptr));
-        DeleteButton->setText(QCoreApplication::translate("RecipeViewWindow", "Delete", nullptr));
         CloseButton->setText(QCoreApplication::translate("RecipeViewWindow", "Close", nullptr));
     } // retranslateUi
 

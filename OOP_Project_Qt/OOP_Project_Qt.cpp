@@ -19,9 +19,7 @@ OOP_Project_Qt::~OOP_Project_Qt()
 void OOP_Project_Qt::openMainWindow() {
     main.setupUi(this);
 
-    time_t t = std::time(nullptr);
-    tm* tt = localtime(&t);
-    int n = (tt->tm_year + 1900) * 10000 + (tt->tm_mon + 1) * 100 + tt->tm_mday;
+    int n = greeter.getNowTime();
 
     list<date> dates = greeter.callDateList();
     QLabel* dateLables[7] = { main.date1, main.date2, main.date3, main.date4, main.date5, main.date6, main.date7 };
@@ -80,7 +78,6 @@ void OOP_Project_Qt::openRecipeListWindow() {
     connect(recipeList.listWidget, SIGNAL(doubleClicked(const QModelIndex)), this, SLOT(openRecipeViewWindow(QModelIndex)));
 
     connect(recipeList.AddButton, SIGNAL(clicked()), this, SLOT(openRecipeInputWindow()));
-    connect(recipeList.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteRecipeInfo()));
 }
 
 //레시피 정보 입력 창(레시피 추가)
@@ -115,7 +112,6 @@ void OOP_Project_Qt::openRecipeViewWindow(QModelIndex index) {
     }
 
     connect(recipeView.EditButton, SIGNAL(clicked()), this, SLOT(openRecipeInputWindowForEdit()));
-    connect(recipeView.DeleteButton, SIGNAL(clicked()), this, SLOT(deleteThisRecipeInfo()));
     connect(recipeView.CloseButton, SIGNAL(clicked()), this, SLOT(openRecipeListWindow()));
 }
 
@@ -159,14 +155,6 @@ void OOP_Project_Qt::InputRecipeInfo() {
         greeter.saveEverything();
 
         openRecipeListWindow();
-    }
-}
-
-//레시피 삭제
-void OOP_Project_Qt::deleteRecipeInfo() {
-    if (recipeList.listWidget->currentItem() != NULL) {
-        string tmp = recipeList.listWidget->currentItem()->text().toStdString();
-        recipeList.listWidget->takeItem(recipeList.listWidget->currentRow());
     }
 }
 

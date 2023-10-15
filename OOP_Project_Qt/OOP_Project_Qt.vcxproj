@@ -96,6 +96,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="date.cpp" />
+    <ClCompile Include="Greeter.cpp" />
+    <ClCompile Include="Meal.cpp" />
+    <ClCompile Include="Planner.cpp" />
+    <ClCompile Include="RecipeDB.cpp" />
     <QtRcc Include="OOP_Project_Qt.qrc" />
     <QtUic Include="RecipeInputWindow.ui" />
     <QtUic Include="DateInputWindow.ui" />
@@ -105,6 +110,7 @@
     <QtUic Include="RecipeListWindow.ui" />
     <QtUic Include="MainWindow.ui" />
     <QtMoc Include="OOP_Project_Qt.h" />
+    <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="OOP_Project_Qt.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

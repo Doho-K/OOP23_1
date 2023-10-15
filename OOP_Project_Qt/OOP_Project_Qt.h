@@ -50,7 +50,6 @@ public slots:
     //레시피 관리
     void InputRecipeInfo();
     void openRecipeInputWindowForEdit();
-    void deleteRecipeInfo();
     void deleteThisRecipeInfo();
     void setRecipeSearchInfo();
 
